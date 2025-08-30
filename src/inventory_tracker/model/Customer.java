@@ -2,7 +2,7 @@ package inventory_tracker.model;
 
 public class Customer {
 
-    // data will be pulled from database
+    // data will be retrieved from database
     public static int id;
     private String businessName;
     private String contactName;
