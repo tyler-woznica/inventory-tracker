@@ -2,7 +2,7 @@ package inventory_tracker.model;
 
 public class RawMaterial {
 
-    // data will be retrieved from database
+    // data retrieved from database
     private int id;
     private String name;
     private double quantityoz;

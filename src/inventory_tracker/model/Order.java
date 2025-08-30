@@ -2,6 +2,7 @@ package inventory_tracker.model;
 
 public class Order {
 
+    // data retrieved from database
     private int id;
     private int customerID;
     // orderDate may type may need to be changed based on SQL
