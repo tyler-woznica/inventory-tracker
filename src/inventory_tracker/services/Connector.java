@@ -1,4 +1,4 @@
 package inventory_tracker.services;
 
-public class addMaterial {
+public class Connector {
 }
