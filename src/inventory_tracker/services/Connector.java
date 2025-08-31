@@ -1,4 +1,0 @@
-package inventory_tracker.services;
-
-public class Connector {
-}
