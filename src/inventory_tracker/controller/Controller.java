@@ -8,7 +8,6 @@ public class Controller {
         int userSelection = 0;
 
         System.out.println("\nINVENTORY TRACKER v1\n");
-        // check for low alerts
 
         while (userSelection != 5) {
 
@@ -20,7 +19,7 @@ public class Controller {
             switch (userSelection) {
                 case 1:
                     System.out.println("\n*** Inventory ***");
-                    System.out.println("1. Check Finished Goods\n2. Check Raw Materials\n");
+                    System.out.println("1. Search\n2. Report\n3. Create Item\n4. Delete Item");
                     break;
                 case 2:
                     System.out.println("\n*** Orders ***");
@@ -32,7 +31,7 @@ public class Controller {
                     break;
                 case 4:
                     System.out.println("\n*** Import/Export ***");
-                    System.out.println("1. Raw Materials\n2. Finished Goods\n3. Customers\n");
+                    System.out.println("1. Inventory\n2. Customers\n");
                     break;
                 case 5:
                     System.out.println("\n*** Closing Program ***");
