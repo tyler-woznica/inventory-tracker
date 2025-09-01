@@ -23,14 +23,20 @@ public class Controller {
 
                 // main menu switch
                 switch (userSelection) {
+
                     // inventory options
                     case 1:
-                        try{
-                            System.out.println("\nINVENTORY\n");
+
+                        System.out.println("\nINVENTORY");
+                        int inventorySelection = 0;
+
+                        while (inventorySelection != 5) {
                             System.out.println("1. Search\n2. Report\n3. Create Item\n4. Delete Item\n5. Main Menu\n");
-                            while (userSelection != 5) {
-                                userSelection = userScanner.nextInt();
-                                switch (userSelection) {
+
+                            try{
+                                inventorySelection = userScanner.nextInt();
+
+                                switch (inventorySelection) {
                                     case 1:
                                         System.out.println("\nINVENTORY SEARCH");
                                         break;
@@ -44,12 +50,17 @@ public class Controller {
                                         System.out.println("\nDELETE ITEM");
                                         break;
                                     case 5:
-
-
+                                        System.out.println("*** RETURNING TO MAIN MENU ***\n");
+                                        break;
+                                    default:
+                                        System.out.println("INVALID INPUT: Please select an option\n");
                                 }
+
+                            } catch (InputMismatchException e) {
+                                System.out.println("INVALID INPUT: Please enter a number only\n");
+                                userScanner.nextLine();
+                                inventorySelection = 0;
                             }
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
                         }
                         break;
                     // orders options
