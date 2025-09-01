@@ -1,16 +1,16 @@
 package inventory_tracker.model;
 
-public class FinishedGood {
-
-    // data retrieved from database
+public class Item {
     private int id;
     private String name;
     private int quantity;
+    private double cost;
 
-    public FinishedGood(int id, String name, int quantity) {
+    public Item(int id, String name, int quantity, double cost) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
+        this.cost = cost;
     }
 
     public int getId() {
@@ -37,12 +37,21 @@ public class FinishedGood {
         this.quantity = quantity;
     }
 
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
     @Override
     public String toString() {
-        return "FinishedGood{" +
+        return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
+                ", cost=" + cost +
                 '}';
     }
 }

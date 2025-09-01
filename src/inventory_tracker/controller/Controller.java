@@ -11,6 +11,7 @@ public class Controller {
         // check for low alerts
 
         while (userSelection != 5) {
+
             System.out.println("*** Options ***");
             System.out.println("1. Inventory\n2. Orders\n3. Customers\n4. Import/Export\n5. Quit");
 
@@ -23,21 +24,21 @@ public class Controller {
                     break;
                 case 2:
                     System.out.println("\n*** Orders ***");
-                    System.out.println("1. Check Orders\n2. Create Order\n3. Delete Order\n");
+                    System.out.println("1. Search\n2. Create\n3. Delete\n");
                     break;
                 case 3:
                     System.out.println("\n*** Customers ***");
-                    System.out.println("\n1. Search Customers\n2. Create Customer\n3. Delete Customer");
+                    System.out.println("1. Search\n2. Create\n3. Delete\n");
                     break;
                 case 4:
                     System.out.println("\n*** Import/Export ***");
-                    System.out.println("\n1. Raw Materials\n2. Finished Goods\n3. Customers");
+                    System.out.println("1. Raw Materials\n2. Finished Goods\n3. Customers\n");
                     break;
                 case 5:
                     System.out.println("\n*** Closing Program ***");
                     break;
                 default:
-                    System.out.println("\n*** Invalid Input ***");
+                    System.out.println("*** Invalid Input ***\n");
             }
         }
     }
