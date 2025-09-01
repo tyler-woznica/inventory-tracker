@@ -15,6 +15,15 @@ public class MySQLConnector {
     public static void main(String[] args) {
         MySQLConnector mySQLConnector = new MySQLConnector();
 
+        try {
+            MySQLConnector.readDataBase("JDBC Course 1", 3);
+        } catch (Exception e){
+            System.out.println("error in readDateBase()" + e.getMessage());
+            System.out.println(e.getStackTrace());
+        }
+    }
+
+    public void readDataBase {
 
     }
 
