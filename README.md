@@ -3,10 +3,9 @@
 A simple, CLI inventory management app.
 
 ## Features
-- Track inventory and cost for both raw materials and finshed goods.
-- Track customers and orders. 
+- Track inventory, customers, and orders.
 - Generate reports like current inventory levels and cost, and projections based on available inventory.
-- Low inventory alerts, and test sale scenarios. 
+- Low inventory alerts, and back order checks. 
 - Import data using a csv, although data can also be input manually.
 - Export csv backup. 
 
