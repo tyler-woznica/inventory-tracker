@@ -12,7 +12,7 @@ public class MySQLConnector {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    //public static void main(String[] args) {
+    public static void main(String[] args) {
         MySQLConnector mySQLConnector = new MySQLConnector();
 
         try {
