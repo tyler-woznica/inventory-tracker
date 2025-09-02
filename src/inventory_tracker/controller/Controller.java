@@ -1,5 +1,5 @@
 package inventory_tracker.controller;
-import inventory_tracker.services.Handlers;
+import inventory_tracker.services.Handler;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,8 +17,13 @@ public class Controller {
         while (mainMenuSelection != 6) {
 
             System.out.println("MAIN MENU");
-            System.out.println("1. Inventory\n2. Orders\n3. Customers\n" +
-                    "4. Analysis\n5. Import/Export\n6. Quit");
+            System.out.println("""
+                    1. Inventory
+                    2. Orders
+                    3. Customers
+                    4. Analysis
+                    5. Import/Export
+                    6. Quit""");
 
             // try catch for any non-int entries
             try{
@@ -31,13 +36,19 @@ public class Controller {
                     // inventory menu options
                     case 1:
 
-                        System.out.println("\nINVENTORY");
+                        System.out.println("INVENTORY");
 
                         // new input unique to inventory options
                         int inventorySelection = 0;
 
                         while (inventorySelection != 5) {
-                            System.out.println("1. Search\n2. Report\n3. Create Item\n4. Delete Item\n5. Main Menu\n");
+                            System.out.println("""
+                                    1. Search
+                                    2. Report
+                                    3. Create Item
+                                    4. Delete Item
+                                    5. Main Menu
+                                    """);
 
                             // inventory menu try statement
                             try{
@@ -71,14 +82,14 @@ public class Controller {
                                 }
                             // inventory menu catch statement
                             } catch (InputMismatchException e) {
-                                inventorySelection = Handlers.handleInputMismatch(userScanner);
+                                inventorySelection = Handler.handleInputMismatch(userScanner);
                             }
                         }
                         break;
 
                     // order menu options
                     case 2:
-                        System.out.println("\nORDERS");
+                        System.out.println("ORDERS");
                         // new input unique to order options
                         int orderSelection = 0;
 
@@ -115,13 +126,13 @@ public class Controller {
                                 }
                                 // order menu catch statement
                             } catch (InputMismatchException e) {
-                                orderSelection = Handlers.handleInputMismatch(userScanner);
+                                orderSelection = Handler.handleInputMismatch(userScanner);
                             }
                         }
                         break;
                     // customer menu options
                     case 3:
-                        System.out.println("\nCUSTOMERS");
+                        System.out.println("CUSTOMERS");
                         int customerSelection = 0;
 
                         while (customerSelection != 4) {
@@ -157,19 +168,19 @@ public class Controller {
                                 }
                                 // customer menu catch statement
                             } catch (InputMismatchException e) {
-                                customerSelection = Handlers.handleInputMismatch(userScanner);
+                                customerSelection = Handler.handleInputMismatch(userScanner);
                             }
                         }
                         break;
 
                     // analysis menu options
                     case 4:
-                        System.out.println("\nANALYSIS");
+                        System.out.println("ANALYSIS");
                         int analysisSelection = 0;
 
                         while (analysisSelection != 5) {
-                            System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers" +
-                                    "\n4. Compare Customers\n5. Compare Items\n6. Main Menu\n");
+                            System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers\n" +
+                                    "4. Compare Customers\n5. Compare Items\n6. Main Menu\n");
 
                             // analysis try statement
                             try{
@@ -206,19 +217,19 @@ public class Controller {
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
-                                analysisSelection = Handlers.handleInputMismatch(userScanner);
+                                analysisSelection = Handler.handleInputMismatch(userScanner);
                             }
                         }
                         break;
 
                     // import/export menu options
                     case 5:
-                        System.out.println("\nIMPORT/EXPORT");
+                        System.out.println("IMPORT/EXPORT");
                         int impExpSelection = 0;
 
                         while (impExpSelection != 5) {
-                            System.out.println("1. Import Inventory\n2. Export Inventory\n3. Import Customers" +
-                                    "\n4. Export Customers\n5. Main Menu\n");
+                            System.out.println("1. Import Inventory\n2. Export Inventory\n3. Import Customers\n" +
+                                    "4. Export Customers\n5. Main Menu\n");
 
                             // import/export try statement
                             try{
@@ -253,7 +264,7 @@ public class Controller {
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
-                                impExpSelection = Handlers.handleInputMismatch(userScanner);
+                                impExpSelection = Handler.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -267,7 +278,7 @@ public class Controller {
                 }
             // main menu catch
             } catch (InputMismatchException e) {
-                mainMenuSelection = Handlers.handleInputMismatch(userScanner);
+                mainMenuSelection = Handler.handleInputMismatch(userScanner);
             }
         }
 

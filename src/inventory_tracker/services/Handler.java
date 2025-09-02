@@ -2,7 +2,7 @@ package inventory_tracker.services;
 
 import java.util.Scanner;
 
-public class Handlers {
+public class Handler {
 
     // helper for menu selection errors
     // replaces this block
