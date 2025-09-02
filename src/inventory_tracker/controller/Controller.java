@@ -1,5 +1,6 @@
 package inventory_tracker.controller;
 import inventory_tracker.services.Handler;
+import inventory_tracker.services.InventorySearch;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -60,6 +61,7 @@ public class Controller {
                                     // inventory search
                                     case 1:
                                         System.out.println("\nINVENTORY SEARCH");
+                                        InventorySearch.inventorySearch();
                                         break;
                                     // inventory report
                                     case 2:
