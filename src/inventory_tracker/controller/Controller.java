@@ -13,23 +13,25 @@ public class Controller {
 
         System.out.println("\nINVENTORY TRACKER - Version 1\n");
 
-        // begin menu selection
+        // menu selection loop
         while (mainMenuSelection != 5) {
+
+            System.out.println("MAIN MENU");
+            System.out.println("1. Inventory\n2. Orders\n3. Customers\n4. Import/Export\n5. Quit");
 
             // try catch for any non-int entries
             try{
-                System.out.println("MAIN MENU");
-                System.out.println("1. Inventory\n2. Orders\n3. Customers\n4. Import/Export\n5. Quit");
 
                 mainMenuSelection = userScanner.nextInt();
 
                 // main menu switch
                 switch (mainMenuSelection) {
 
-                    // inventory options
+                    // inventory menu options
                     case 1:
 
                         System.out.println("\nINVENTORY");
+
                         // new input unique to inventory options
                         int inventorySelection = 0;
 
@@ -38,6 +40,7 @@ public class Controller {
 
                             // inventory menu try statement
                             try{
+
                                 inventorySelection = userScanner.nextInt();
 
                                 switch (inventorySelection) {
@@ -46,22 +49,18 @@ public class Controller {
                                     case 1:
                                         System.out.println("\nINVENTORY SEARCH");
                                         break;
-
                                     // inventory report
                                     case 2:
                                         System.out.println("\nINVENTORY REPORT");
                                         break;
-
                                     // create item
                                     case 3:
                                         System.out.println("\nCREATE ITEM");
                                         break;
-
                                     // delete item
                                     case 4:
                                         System.out.println("\nDELETE ITEM");
                                         break;
-
                                     // return to main menu
                                     case 5:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
@@ -162,11 +161,53 @@ public class Controller {
                         }
                         break;
 
-                    // import/export options
+                    // import/export menu options
                     case 4:
                         System.out.println("\nIMPORT/EXPORT");
-                        System.out.println("1. Inventory\n2. Customers\n3. Main Menu\n");
+                        int impExpSelection = 0;
+
+                        while (impExpSelection != 5) {
+                            System.out.println("1. Import Inventory\n2. Export Inventory\n3. Import Customers" +
+                                    "\n4. Export Customers\n5. Main Menu\n");
+
+                            // import/export try statement
+                            try{
+                                impExpSelection = userScanner.nextInt();
+
+                                switch (impExpSelection) {
+
+                                    // import inventory
+                                    case 1:
+                                        System.out.println("\nIMPORT INVENTORY");
+                                        break;
+
+                                    // export inventory
+                                    case 2:
+                                        System.out.println("\nEXPORT INVENTORY");
+                                        break;
+
+                                    // import customers
+                                    case 3:
+                                        System.out.println("\nIMPORT CUSTOMERS");
+                                        break;
+                                    // export customers
+                                    case 4:
+                                        System.out.println("\nEXPORT CUSTOMERS");
+
+                                    // return to main menu
+                                    case 5:
+                                        System.out.println("*** RETURNING TO MAIN MENU ***\n");
+                                        break;
+                                    default:
+                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                }
+                                // import/export menu catch statement
+                            } catch (InputMismatchException e) {
+                                impExpSelection = Handlers.handleInputMismatch(userScanner);
+                            }
+                        }
                         break;
+
                     // quit the program
                     case 5:
                         System.out.println("\nCLOSING PROGRAM\n");
