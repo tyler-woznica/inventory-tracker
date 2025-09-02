@@ -1,31 +1,27 @@
 package inventory_tracker.data;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MySQLConnector {
 
-    private Connection connection = null;
-    private Statement statement = null;
-    private PreparedStatement preparedStatement = null;
-    private ResultSet resultSet = null;
+        private static final String URL = "jdbc:mysql://localhost:3306/inventory_tracker";
+        private static final String USER = "root";
+        private static final String PASSWORD = "password";
 
-    public static void main(String[] args) {
-        MySQLConnector mySQLConnector = new MySQLConnector();
+        static {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException("MySQL driver not found", e);
+            }
 
-        try {
-            MySQLConnector.readDataBase("JDBC Course 1", 3);
-        } catch (Exception e){
-            System.out.println("error in readDateBase()" + e.getMessage());
-            System.out.println(e.getStackTrace());
-        }
-    }
-
-    public void readDataBase {
 
     }
 
+    public static Connection getConnection() throws SQLException {
+            return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
 
 }
