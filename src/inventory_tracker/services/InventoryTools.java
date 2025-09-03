@@ -12,7 +12,7 @@ public class InventoryTools {
 
     // search for a specific item using the inventory id
     public static void inventorySearch(int id) {
-        String query = "SELECT id, name, quantity, cost FROM inventory WHERE id = ?";
+        String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -26,7 +26,7 @@ public class InventoryTools {
                             rs.getInt("id") + " | " +
                                     rs.getString("name") + " | " +
                                     rs.getInt("quantity") + " | " + "$" +
-                                    rs.getDouble("cost")
+                                    rs.getDouble("price")
                     );
                 } else {
                     System.out.println("No product found with ID: " + id);
@@ -43,8 +43,8 @@ public class InventoryTools {
     // gets a full report of current inventory
     public static void inventoryReport() {
 
-        System.out.println("ID | NAME | QUANTITY | COST/UNIT");
-        String query = "SELECT id, name, quantity, cost FROM inventory";
+        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
+        String query = "SELECT id, name, quantity, price FROM inventory";
 
         try(Connection conn = MySQLConnector.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -55,7 +55,7 @@ public class InventoryTools {
                         rs.getInt("id") + " | " +
                                 rs.getString("name") + " | " +
                                 rs.getInt("quantity") + " | " + "$" +
-                                rs.getDouble("cost")
+                                rs.getDouble("price")
                 );
             }
         } catch (SQLException e) {
@@ -64,16 +64,21 @@ public class InventoryTools {
         System.out.println();
     }
 
+    // updates existing item based on user input
+    public static void updateInventory() {
+
+    }
+
     // creates an item based on user input
-    public static void inventoryCreate(Item item) {
-        String query = "INSERT INTO inventory (name, quantity, cost) VALUES (?, ?, ?";
+    public static void createInventory(Item item) {
+        String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, item.getName());
             stmt.setInt(2, item.getQuantity());
-            stmt.setDouble(3, item.getCost());
+            stmt.setDouble(3, item.getPrice());
 
             stmt.executeUpdate();
 
@@ -83,8 +88,10 @@ public class InventoryTools {
         }
 
     }
+
     // deletes an item based on product id with confirmation
-    public static void inventoryDelete() {
+    public static void deleteInventory(int id) {
+
 
     }
 }

@@ -1,14 +1,32 @@
 package inventory_tracker.model;
 
 public class Item {
+    private int id;
     private String name;
     private int quantity;
-    private double cost;
+    private double price;
 
-    public Item(String name, int quantity, double cost) {
+    // constructor without id as db will create this
+    public Item(String name, int quantity, double price) {
         this.name = name;
         this.quantity = quantity;
-        this.cost = cost;
+        this.price = price;
+    }
+
+    // constructor with id after assignment from db
+    public Item(int id, String name, int quantity, double price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -27,12 +45,12 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public double getCost() {
-        return cost;
+    public double getPrice() {
+        return price;
     }
 
-    public void setCost(double cost) {
-        this.cost = cost;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -41,7 +59,7 @@ public class Item {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
-                ", cost=" + cost +
+                ", price=" + price +
                 '}';
     }
 }

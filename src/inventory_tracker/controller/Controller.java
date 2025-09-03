@@ -82,10 +82,10 @@ public class Controller {
                                         String name = userScanner.nextLine();
                                         System.out.println("Enter new item quantity: ");
                                         int quantity = userScanner.nextInt();
-                                        System.out.println("Enter new item cost per unit");
-                                        double cost = userScanner.nextDouble();
-                                        Item item = new Item(name, quantity, cost);
-                                        InventoryTools.inventoryCreate(item);
+                                        System.out.println("Enter new item price per unit");
+                                        double price = userScanner.nextDouble();
+                                        Item item = new Item(name, quantity, price);
+                                        InventoryTools.createInventory(item);
                                         System.out.println("*** Item Created ***");
                                         break;
 
