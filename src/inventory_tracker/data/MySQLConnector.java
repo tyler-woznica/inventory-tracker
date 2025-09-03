@@ -8,7 +8,7 @@ public class MySQLConnector {
 
         private static final String URL = "jdbc:mysql://localhost:3306/inventory_tracker";
         private static final String USER = "root";
-        private static final String PASSWORD = "099122T$ugu@";
+        private static final String PASSWORD = "password";
 
         static {
             try {
