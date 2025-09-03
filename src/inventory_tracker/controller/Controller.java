@@ -5,6 +5,7 @@ import inventory_tracker.services.Handler;
 import inventory_tracker.services.InventoryTools;
 import inventory_tracker.services.OrderTools;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -91,7 +92,7 @@ public class Controller {
 
                                     // delete item
                                     case 4:
-                                        System.out.println("\nDELETE ITEM");
+                                        System.out.println("\nDELETE ITEM - CURRENTLY UNAVAILABLE");
                                         break;
                                     // return to main menu
                                     case 5:
@@ -133,12 +134,12 @@ public class Controller {
 
                                     // create order
                                     case 2:
-                                        System.out.println("\nCREATE ORDER");
+                                        System.out.println("\nCREATE ORDER - CURRENTLY UNAVAILABLE");
                                         break;
 
                                     // delete order
                                     case 3:
-                                        System.out.println("\nDELETE ORDER");
+                                        System.out.println("\nDELETE ORDER - CURRENTLY UNAVAILABLE");
                                         break;
 
                                     // return to main menu
@@ -179,12 +180,12 @@ public class Controller {
 
                                     // create customer
                                     case 2:
-                                        System.out.println("\nCREATE CUSTOMER");
+                                        System.out.println("\nCREATE CUSTOMER - CURRENTLY UNAVAILABLE");
                                         break;
 
                                     // delete customer
                                     case 3:
-                                        System.out.println("\nDELETE CUSTOMER");
+                                        System.out.println("\nDELETE CUSTOMER - CURRENTLY UNAVAILABLE");
                                         break;
 
                                     // return to main menu
@@ -206,7 +207,8 @@ public class Controller {
                         System.out.println("ANALYSIS");
                         int analysisSelection = 0;
 
-                        while (analysisSelection != 5) {
+                        while (analysisSelection != 6) {
+                            System.out.println("*** ANALYSIS CURRENTLY UNAVAILABLE ***");
                             System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers\n" +
                                     "4. Compare Customers\n5. Compare Items\n6. Main Menu\n");
 
