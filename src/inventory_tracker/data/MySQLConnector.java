@@ -24,6 +24,10 @@ public class MySQLConnector {
             return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
+    public static void methodTry() {
+
+    }
+
 
 
 }

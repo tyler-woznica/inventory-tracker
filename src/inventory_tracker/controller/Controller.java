@@ -1,4 +1,5 @@
 package inventory_tracker.controller;
+import inventory_tracker.model.Item;
 import inventory_tracker.services.CustomerTools;
 import inventory_tracker.services.Handler;
 import inventory_tracker.services.InventoryTools;
@@ -73,10 +74,21 @@ public class Controller {
                                         System.out.println("\n*** INVENTORY REPORT ***");
                                         InventoryTools.inventoryReport();
                                         break;
+
                                     // create item
                                     case 3:
                                         System.out.println("\nCREATE ITEM");
+                                        System.out.println("Enter new item name: ");
+                                        String name = userScanner.nextLine();
+                                        System.out.println("Enter new item quantity: ");
+                                        int quantity = userScanner.nextInt();
+                                        System.out.println("Enter new item cost per unit");
+                                        double cost = userScanner.nextDouble();
+                                        Item item = new Item(name, quantity, cost);
+                                        InventoryTools.inventoryCreate(item);
+                                        System.out.println("*** Item Created ***");
                                         break;
+
                                     // delete item
                                     case 4:
                                         System.out.println("\nDELETE ITEM");

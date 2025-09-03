@@ -1,24 +1,14 @@
 package inventory_tracker.model;
 
 public class Item {
-    private int id;
     private String name;
     private int quantity;
     private double cost;
 
-    public Item(int id, String name, int quantity, double cost) {
-        this.id = id;
+    public Item(String name, int quantity, double cost) {
         this.name = name;
         this.quantity = quantity;
         this.cost = cost;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

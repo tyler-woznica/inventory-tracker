@@ -1,6 +1,7 @@
 package inventory_tracker.services;
 
 import inventory_tracker.data.MySQLConnector;
+import inventory_tracker.model.Item;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,7 +65,22 @@ public class InventoryTools {
     }
 
     // creates an item based on user input
-    public static void inventoryCreate() {
+    public static void inventoryCreate(Item item) {
+        String query = "INSERT INTO inventory (name, quantity, cost) VALUES (?, ?, ?";
+
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, item.getName());
+            stmt.setInt(2, item.getQuantity());
+            stmt.setDouble(3, item.getCost());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error inserting record into inventory.");
+        }
 
     }
     // deletes an item based on product id with confirmation
