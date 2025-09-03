@@ -71,7 +71,7 @@ public class InventoryTools {
 
     // creates an item based on user input
     public static void createInventory(Item item) {
-        String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?";
+        String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -83,7 +83,6 @@ public class InventoryTools {
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
             System.out.println("Error inserting record into inventory.");
         }
 

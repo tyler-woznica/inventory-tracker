@@ -40,7 +40,6 @@ public class Controller {
 
                     // inventory menu options
                     case 1:
-
                         System.out.println("INVENTORY");
 
                         // new input unique to inventory options
@@ -79,12 +78,13 @@ public class Controller {
                                     // create item
                                     case 3:
                                         System.out.println("\nCREATE ITEM");
+                                        userScanner.nextLine();
                                         System.out.println("Enter new item name: ");
                                         String name = userScanner.nextLine();
                                         System.out.println("Enter new item quantity: ");
-                                        int quantity = userScanner.nextInt();
+                                        int quantity = Integer.parseInt(userScanner.nextLine());
                                         System.out.println("Enter new item price per unit");
-                                        double price = userScanner.nextDouble();
+                                        double price = Double.parseDouble(userScanner.nextLine());
                                         Item item = new Item(name, quantity, price);
                                         InventoryTools.createInventory(item);
                                         System.out.println("*** Item Created ***");

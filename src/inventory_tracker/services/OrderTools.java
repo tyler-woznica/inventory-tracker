@@ -42,6 +42,7 @@ public class OrderTools {
     public static void inventoryCreate() {
 
     }
+
     // deletes an item based on product id with confirmation
     public static void inventoryDelete() {
 
