@@ -11,7 +11,7 @@ public class CustomerTools {
 
     // search for a specific item using the inventory id
     public static void customerSearch(int id) {
-        String query = "SELECT id, name, quantity, cost FROM inventory WHERE id = ?";
+        String query = "SELECT id, business_name, email, phone, city, state FROM customers WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -23,12 +23,14 @@ public class CustomerTools {
                 if (rs.next()) {
                     System.out.println(
                             rs.getInt("id") + " | " +
-                                    rs.getString("name") + " | " +
-                                    rs.getInt("quantity") + " | " + "$" +
-                                    rs.getDouble("cost")
+                                    rs.getString("business_name") + " | " +
+                                    rs.getString("email") + " | " +
+                                    rs.getLong("phone") + " | " +
+                                    rs.getString("city") + " | " +
+                                    rs.getString("state")
                     );
                 } else {
-                    System.out.println("No product found with ID: " + id);
+                    System.out.println("No customers found with ID: " + id);
                 }
             }
 
@@ -37,6 +39,15 @@ public class CustomerTools {
             e.printStackTrace();
         }
         System.out.println();
+    }
+
+    // creates a customer based on user input
+    public static void customerCreate() {
+
+    }
+    // deletes a customer based on product id with confirmation
+    public static void customerDelete() {
+
     }
 
 

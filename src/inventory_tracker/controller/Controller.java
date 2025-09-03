@@ -1,6 +1,8 @@
 package inventory_tracker.controller;
+import inventory_tracker.services.CustomerTools;
 import inventory_tracker.services.Handler;
 import inventory_tracker.services.InventoryTools;
+import inventory_tracker.services.OrderTools;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -110,7 +112,11 @@ public class Controller {
 
                                     // order search
                                     case 1:
+                                        int orderID;
                                         System.out.println("\nORDER SEARCH");
+                                        System.out.println("Please enter the customer ID: ");
+                                        orderID = userScanner.nextInt();
+                                        OrderTools.orderSearch(orderID);
                                         break;
 
                                     // create order
@@ -152,7 +158,11 @@ public class Controller {
 
                                     // customer search
                                     case 1:
+                                        int customerID;
                                         System.out.println("\nCUSTOMER SEARCH");
+                                        System.out.println("Please enter the customer ID: ");
+                                        customerID = userScanner.nextInt();
+                                        CustomerTools.customerSearch(customerID);
                                         break;
 
                                     // create customer

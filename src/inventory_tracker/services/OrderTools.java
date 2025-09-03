@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class OrderTools {
 
     public static void orderSearch(int id) {
-        String query = "SELECT id, name, quantity, cost FROM inventory WHERE id = ?";
+        String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -22,12 +22,12 @@ public class OrderTools {
                 if (rs.next()) {
                     System.out.println(
                             rs.getInt("id") + " | " +
-                                    rs.getString("name") + " | " +
-                                    rs.getInt("quantity") + " | " + "$" +
-                                    rs.getDouble("cost")
+                                    rs.getInt("customer_id") + " | " +
+                                    rs.getString("order_date") + " | " + "$" +
+                                    rs.getDouble("total")
                     );
                 } else {
-                    System.out.println("No product found with ID: " + id);
+                    System.out.println("No order found with ID: " + id);
                 }
             }
 
