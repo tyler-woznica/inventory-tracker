@@ -92,7 +92,18 @@ public class Controller {
 
                                     // delete item
                                     case 4:
-                                        System.out.println("\nDELETE ITEM - CURRENTLY UNAVAILABLE");
+                                        System.out.println("\nDELETE ITEM");
+                                        System.out.println("Please enter the id of the item to be deleted: ");
+                                        int id = userScanner.nextInt();
+                                        System.out.println("The following product is about to be deleted: ");
+                                        InventoryTools.inventorySearch(id);
+                                        System.out.println("Press 1 to delete or press 2 to cancel: ");
+                                        int check = userScanner.nextInt();
+                                        if (check == 1) {
+                                            InventoryTools.deleteInventory(id);
+                                        } else {
+                                            break;
+                                        }
                                         break;
                                     // return to main menu
                                     case 5:

@@ -35,7 +35,6 @@ public class InventoryTools {
 
         } catch (SQLException e) {
             System.out.println("\n*** Connection to Database Failed ***\n");
-            e.printStackTrace();
         }
         System.out.println();
     }
@@ -88,9 +87,27 @@ public class InventoryTools {
 
     }
 
-    // deletes an item based on product id with confirmation
+    // run after confirming with user with inventorySearch
     public static void deleteInventory(int id) {
+        String query = "DELETE FROM inventory WHERE id = ?";
 
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            // set input to the query
+            stmt.setInt(1, id);
+
+            int rowsDeleted = stmt.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Product with ID " + id + " deleted.");
+            } else {
+                System.out.println("No product found with ID: " + id);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("\n*** Connection to Database Failed ***\n");
+        }
+        System.out.println();
     }
 }
