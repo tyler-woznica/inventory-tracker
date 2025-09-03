@@ -1,6 +1,6 @@
 package inventory_tracker.controller;
 import inventory_tracker.services.Handler;
-import inventory_tracker.services.InventorySearch;
+import inventory_tracker.services.InventoryTools;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -60,12 +60,16 @@ public class Controller {
 
                                     // inventory search
                                     case 1:
-                                        System.out.println("\nINVENTORY SEARCH");
-                                        InventorySearch.inventorySearch();
+                                        int inventoryID;
+                                        System.out.println("\n*** INVENTORY SEARCH ***");
+                                        System.out.println("Please enter the product ID: ");
+                                        inventoryID = userScanner.nextInt();
+                                        InventoryTools.inventorySearch(inventoryID);
                                         break;
                                     // inventory report
                                     case 2:
-                                        System.out.println("\nINVENTORY REPORT");
+                                        System.out.println("\n*** INVENTORY REPORT ***");
+                                        InventoryTools.inventoryReport();
                                         break;
                                     // create item
                                     case 3:
