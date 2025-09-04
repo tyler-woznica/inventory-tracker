@@ -1,11 +1,10 @@
 package inventory_tracker.controller;
 import inventory_tracker.model.Item;
-import inventory_tracker.services.CustomerTools;
+import inventory_tracker.services.CustomerService;
 import inventory_tracker.services.Handler;
 import inventory_tracker.services.InventoryTools;
 import inventory_tracker.services.OrderTools;
 
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -186,7 +185,7 @@ public class Controller {
                                         System.out.println("\nCUSTOMER SEARCH");
                                         System.out.println("Please enter the customer ID: ");
                                         customerID = userScanner.nextInt();
-                                        CustomerTools.customerSearch(customerID);
+                                        CustomerService.customerSearch(customerID);
                                         break;
 
                                     // create customer
