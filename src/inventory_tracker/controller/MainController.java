@@ -1,14 +1,14 @@
 package inventory_tracker.controller;
 import inventory_tracker.model.Item;
 import inventory_tracker.services.CustomerService;
-import inventory_tracker.services.Handler;
-import inventory_tracker.services.InventoryTools;
-import inventory_tracker.services.OrderTools;
+import inventory_tracker.services.ExceptionService;
+import inventory_tracker.services.InventoryService;
+import inventory_tracker.services.OrderService;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Controller {
+public class MainController {
     public static void main(String[] args) {
 
         // create scanner and set userSelection to zero
@@ -66,12 +66,12 @@ public class Controller {
                                         System.out.println("\n*** INVENTORY SEARCH ***");
                                         System.out.println("Please enter the product ID: ");
                                         inventoryID = userScanner.nextInt();
-                                        InventoryTools.inventorySearch(inventoryID);
+                                        InventoryService.inventorySearch(inventoryID);
                                         break;
                                     // inventory report
                                     case 2:
                                         System.out.println("\n*** INVENTORY REPORT ***");
-                                        InventoryTools.inventoryReport();
+                                        InventoryService.inventoryReport();
                                         break;
 
                                     // create item
@@ -85,7 +85,7 @@ public class Controller {
                                         System.out.println("Enter new item price per unit");
                                         double price = Double.parseDouble(userScanner.nextLine());
                                         Item item = new Item(name, quantity, price);
-                                        InventoryTools.createInventory(item);
+                                        InventoryService.createInventory(item);
                                         System.out.println("*** Item Created ***");
                                         break;
 
@@ -95,11 +95,11 @@ public class Controller {
                                         System.out.println("Please enter the id of the item to be deleted: ");
                                         int id = userScanner.nextInt();
                                         System.out.println("The following product is about to be deleted: ");
-                                        InventoryTools.inventorySearch(id);
+                                        InventoryService.inventorySearch(id);
                                         System.out.println("Press 1 to delete or press 2 to cancel: ");
                                         int check = userScanner.nextInt();
                                         if (check == 1) {
-                                            InventoryTools.deleteInventory(id);
+                                            InventoryService.deleteInventory(id);
                                         } else {
                                             break;
                                         }
@@ -113,7 +113,7 @@ public class Controller {
                                 }
                             // inventory menu catch statement
                             } catch (InputMismatchException e) {
-                                inventorySelection = Handler.handleInputMismatch(userScanner);
+                                inventorySelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -139,7 +139,7 @@ public class Controller {
                                         System.out.println("\nORDER SEARCH");
                                         System.out.println("Please enter the customer ID: ");
                                         orderID = userScanner.nextInt();
-                                        OrderTools.orderSearch(orderID);
+                                        OrderService.orderSearch(orderID);
                                         break;
 
                                     // create order
@@ -161,7 +161,7 @@ public class Controller {
                                 }
                                 // order menu catch statement
                             } catch (InputMismatchException e) {
-                                orderSelection = Handler.handleInputMismatch(userScanner);
+                                orderSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -207,7 +207,7 @@ public class Controller {
                                 }
                                 // customer menu catch statement
                             } catch (InputMismatchException e) {
-                                customerSelection = Handler.handleInputMismatch(userScanner);
+                                customerSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -257,7 +257,7 @@ public class Controller {
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
-                                analysisSelection = Handler.handleInputMismatch(userScanner);
+                                analysisSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -304,7 +304,7 @@ public class Controller {
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
-                                impExpSelection = Handler.handleInputMismatch(userScanner);
+                                impExpSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
@@ -318,7 +318,7 @@ public class Controller {
                 }
             // main menu catch
             } catch (InputMismatchException e) {
-                mainMenuSelection = Handler.handleInputMismatch(userScanner);
+                mainMenuSelection = ExceptionService.handleInputMismatch(userScanner);
             }
         }
 

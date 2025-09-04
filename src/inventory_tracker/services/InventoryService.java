@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class InventoryTools {
+public class InventoryService {
 
     // search for a specific item using the inventory id
     public static void inventorySearch(int id) {

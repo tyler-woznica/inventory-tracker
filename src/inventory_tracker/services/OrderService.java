@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class OrderTools {
+public class OrderService {
 
     public static void orderSearch(int id) {
         String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
