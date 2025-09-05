@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class CustomerService {
 
     // search for a specific item using the inventory id
-    public static void customerSearch(int id) {
+    public static void search(int id) {
         String query = "SELECT id, business_name, email, phone, city, state FROM customers WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -42,11 +42,11 @@ public class CustomerService {
     }
 
     // creates a customer based on user input
-    public static void customerCreate() {
+    public static void create() {
 
     }
     // deletes a customer based on product id with confirmation
-    public static void customerDelete() {
+    public static void delete() {
 
     }
 

@@ -217,10 +217,10 @@ public class MainController {
                         System.out.println("ANALYSIS");
                         int analysisSelection = 0;
 
-                        while (analysisSelection != 6) {
+                        while (analysisSelection != 4) {
                             System.out.println("*** ANALYSIS CURRENTLY UNAVAILABLE ***");
                             System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers\n" +
-                                    "4. Compare Customers\n5. Compare Items\n6. Main Menu\n");
+                                    "4. Main Menu\n");
 
                             // analysis try statement
                             try{
@@ -244,12 +244,6 @@ public class MainController {
                                         break;
                                     // export customers
                                     case 4:
-                                        System.out.println("\nCOMPARE CUSTOMERS");
-                                    // compare items
-                                    case 5:
-                                        System.out.println("\nCOMPARE ITEMS");
-                                    // return to main menu
-                                    case 6:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:

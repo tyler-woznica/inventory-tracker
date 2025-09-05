@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class OrderService {
 
-    public static void orderSearch(int id) {
+    public static void search(int id) {
         String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -39,12 +39,12 @@ public class OrderService {
     }
 
     // creates an item based on user input
-    public static void inventoryCreate() {
+    public static void create() {
 
     }
 
     // deletes an item based on product id with confirmation
-    public static void inventoryDelete() {
+    public static void delete() {
 
     }
 }
