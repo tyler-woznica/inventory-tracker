@@ -6,10 +6,9 @@ import java.sql.SQLException;
 
 public class MySQLConnector {
 
-        private static final String URL = "jdbc:mysql://localhost:3306/inventory_tracker";
+        private static final String URL = "jdbc:mysql://127.0.0.1:3306/inventory-tracker?useSSL=false";
         private static final String USER = "root";
-        // test password
-        private static final String PASSWORD = "p@ssw0rd";
+        private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
         static {
             try {
@@ -28,7 +27,5 @@ public class MySQLConnector {
     public static void methodTry() {
 
     }
-
-
 
 }
