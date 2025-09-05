@@ -110,4 +110,21 @@ public class InventoryService {
         }
         System.out.println();
     }
+
+    public static void search() {
+
+    }
+
+    public static void report() {
+
+    }
+
+    public static void create() {
+
+    }
+
+    public static void delete() {
+
+    }
+
 }
