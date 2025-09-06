@@ -57,11 +57,10 @@ public class MainController {
 
                             // inventory menu try statement
                             try{
-                                // get user input for inventory menu
+
                                 inventoryMenuSelection = userScanner.nextInt();
 
                                 switch (inventoryMenuSelection) {
-
                                     // inventory search
                                     case 1:
                                         InventoryService.search();
@@ -89,6 +88,7 @@ public class MainController {
                                     default:
                                         System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
+
                             // inventory menu catch statement
                             } catch (InputMismatchException e) {
                                 inventoryMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -99,10 +99,10 @@ public class MainController {
                     // order menu options
                     case 2:
                         System.out.println("ORDERS");
-                        // new input unique to order options
-                        int orderSelection = 0;
 
-                        while (orderSelection != 4) {
+                        int orderMenuSelection = 0;
+
+                        while (orderMenuSelection != 4) {
                             System.out.println("1. Search\n2. Create\n3. Delete\n4. Main Menu\n");
 
                             // order menu try statement
