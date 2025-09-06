@@ -11,7 +11,14 @@ import java.sql.SQLException;
 public class InventoryService {
 
     // search for a specific item using the inventory id
-    public static void inventorySearch(int id) {
+
+    public static void search(int id) {
+        // CODE FROM MENU NEEDS TO BE IN METHOD
+        //    int inventoryID;
+        //    System.out.println("\n*** INVENTORY SEARCH ***");
+        //    System.out.println("Please enter the product ID: ");
+        //    inventoryID = userScanner.nextInt();
+        //    InventoryService.inventorySearch(inventoryID);
         String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -40,8 +47,9 @@ public class InventoryService {
     }
 
     // gets a full report of current inventory
-    public static void inventoryReport() {
-
+    public static void report() {
+        // CODE FROM MENU TO ADD TO METHOD
+        // System.out.println("\n*** INVENTORY REPORT ***");
         System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
         String query = "SELECT id, name, quantity, price FROM inventory";
 
@@ -64,12 +72,24 @@ public class InventoryService {
     }
 
     // updates existing item based on user input
-    public static void updateInventory() {
+    public static void update() {
 
     }
 
     // creates an item based on user input
-    public static void createInventory(Item item) {
+    public static void create(Item item) {
+        // CODE FROM MENU TO ADD TO METHOD
+//        System.out.println("\nCREATE ITEM");
+//        userScanner.nextLine();
+//        System.out.println("Enter new item name: ");
+//        String name = userScanner.nextLine();
+//        System.out.println("Enter new item quantity: ");
+//        int quantity = Integer.parseInt(userScanner.nextLine());
+//        System.out.println("Enter new item price per unit");
+//        double price = Double.parseDouble(userScanner.nextLine());
+//        Item item = new Item(name, quantity, price);
+//        InventoryService.createInventory(item);
+//        System.out.println("*** Item Created ***");
         String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -88,7 +108,20 @@ public class InventoryService {
     }
 
     // run after confirming with user with inventorySearch
-    public static void deleteInventory(int id) {
+    public static void delete(int id) {
+        // CODE FROM MENU TO ADD TO METHOD
+        // System.out.println("\nDELETE ITEM");
+        // System.out.println("Please enter the id of the item to be deleted: ");
+        // int id = userScanner.nextInt();
+        // System.out.println("The following product is about to be deleted: ");
+        // InventoryService.inventorySearch(id);
+        // System.out.println("Press 1 to delete or press 2 to cancel: ");
+        // int check = userScanner.nextInt();
+        // if (check == 1) {
+        // InventoryService.deleteInventory(id);
+        // } else {
+        // break;
+        // }
         String query = "DELETE FROM inventory WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -110,21 +143,4 @@ public class InventoryService {
         }
         System.out.println();
     }
-
-    public static void search() {
-
-    }
-
-    public static void report() {
-
-    }
-
-    public static void create() {
-
-    }
-
-    public static void delete() {
-
-    }
-
 }

@@ -15,7 +15,7 @@ public class MainController {
         Scanner userScanner = new Scanner(System.in);
         int mainMenuSelection = 0;
 
-        System.out.println("\nINVENTORY TRACKER - Version 1\n");
+        System.out.println("\n*** INVENTORY TRACKER ***\n");
 
         // menu selection loop
         while (mainMenuSelection != 6) {
@@ -32,88 +32,66 @@ public class MainController {
             // try catch for any non-int entries
             try{
 
+                // take in user selection
                 mainMenuSelection = userScanner.nextInt();
 
                 // main menu switch
                 switch (mainMenuSelection) {
 
-                    // inventory menu options
+                    // inventory menu
                     case 1:
                         System.out.println("INVENTORY");
 
                         // new input unique to inventory options
-                        int inventorySelection = 0;
+                        int inventoryMenuSelection = 0;
 
-                        while (inventorySelection != 5) {
+                        while (inventoryMenuSelection != 6) {
                             System.out.println("""
                                     1. Search
                                     2. Report
-                                    3. Create Item
-                                    4. Delete Item
-                                    5. Main Menu
+                                    3. Update Item
+                                    4. Create Item
+                                    5. Delete Item
+                                    6. Main Menu
                                     """);
 
                             // inventory menu try statement
                             try{
+                                // get user input for inventory menu
+                                inventoryMenuSelection = userScanner.nextInt();
 
-                                inventorySelection = userScanner.nextInt();
-
-                                switch (inventorySelection) {
+                                switch (inventoryMenuSelection) {
 
                                     // inventory search
                                     case 1:
-                                        int inventoryID;
-                                        System.out.println("\n*** INVENTORY SEARCH ***");
-                                        System.out.println("Please enter the product ID: ");
-                                        inventoryID = userScanner.nextInt();
-                                        InventoryService.inventorySearch(inventoryID);
+                                        InventoryService.search();
                                         break;
                                     // inventory report
                                     case 2:
-                                        System.out.println("\n*** INVENTORY REPORT ***");
-                                        InventoryService.inventoryReport();
+                                        InventoryService.report();
                                         break;
-
-                                    // create item
+                                    // update item
                                     case 3:
-                                        System.out.println("\nCREATE ITEM");
-                                        userScanner.nextLine();
-                                        System.out.println("Enter new item name: ");
-                                        String name = userScanner.nextLine();
-                                        System.out.println("Enter new item quantity: ");
-                                        int quantity = Integer.parseInt(userScanner.nextLine());
-                                        System.out.println("Enter new item price per unit");
-                                        double price = Double.parseDouble(userScanner.nextLine());
-                                        Item item = new Item(name, quantity, price);
-                                        InventoryService.createInventory(item);
-                                        System.out.println("*** Item Created ***");
+                                        InventoryService.update();
                                         break;
-
-                                    // delete item
+                                    // create item
                                     case 4:
-                                        System.out.println("\nDELETE ITEM");
-                                        System.out.println("Please enter the id of the item to be deleted: ");
-                                        int id = userScanner.nextInt();
-                                        System.out.println("The following product is about to be deleted: ");
-                                        InventoryService.inventorySearch(id);
-                                        System.out.println("Press 1 to delete or press 2 to cancel: ");
-                                        int check = userScanner.nextInt();
-                                        if (check == 1) {
-                                            InventoryService.deleteInventory(id);
-                                        } else {
-                                            break;
-                                        }
+                                        InventoryService.create();
+                                        break;
+                                    // delete item
+                                    case 5:
+                                        InventoryService.delete();
                                         break;
                                     // return to main menu
-                                    case 5:
+                                    case 6:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
                             // inventory menu catch statement
                             } catch (InputMismatchException e) {
-                                inventorySelection = ExceptionService.handleInputMismatch(userScanner);
+                                inventoryMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
