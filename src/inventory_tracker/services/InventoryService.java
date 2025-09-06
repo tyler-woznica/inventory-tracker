@@ -3,22 +3,26 @@ package inventory_tracker.services;
 import inventory_tracker.data.MySQLConnector;
 import inventory_tracker.model.Item;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Scanner;
 
 public class InventoryService {
 
-    // search for a specific item using the inventory id
+    static int id;
+    static String name;
+    static int quantity;
+    static double price;
+    static Scanner userScanner = new Scanner(System.in);
 
-    public static void search(int id) {
-        // CODE FROM MENU NEEDS TO BE IN METHOD
-        //    int inventoryID;
-        //    System.out.println("\n*** INVENTORY SEARCH ***");
-        //    System.out.println("Please enter the product ID: ");
-        //    inventoryID = userScanner.nextInt();
-        //    InventoryService.inventorySearch(inventoryID);
+
+    public static void search() {
+
+        System.out.println("*** INVENTORY SEARCH ***");
+        System.out.println("Please enter the item ID:");
+
+        id = userScanner.nextInt();
+
+        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
         String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -29,6 +33,8 @@ public class InventoryService {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    System.out.println("*** SEARCH RESULTS ***");
+
                     System.out.println(
                             rs.getInt("id") + " | " +
                                     rs.getString("name") + " | " +
@@ -41,15 +47,13 @@ public class InventoryService {
             }
 
         } catch (SQLException e) {
-            System.out.println("\n*** Connection to Database Failed ***\n");
+            System.out.println("*** Connection to Database Failed ***");
         }
-        System.out.println();
     }
 
-    // gets a full report of current inventory
+
     public static void report() {
-        // CODE FROM MENU TO ADD TO METHOD
-        // System.out.println("\n*** INVENTORY REPORT ***");
+        System.out.println("*** INVENTORY REPORT *** ");
         System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
         String query = "SELECT id, name, quantity, price FROM inventory";
 
@@ -66,9 +70,8 @@ public class InventoryService {
                 );
             }
         } catch (SQLException e) {
-            System.out.println("\n*** Connection to Database Failed ***\n");
+            System.out.println("*** Connection to Database Failed ***");
         }
-        System.out.println();
     }
 
     // updates existing item based on user input
@@ -77,7 +80,7 @@ public class InventoryService {
     }
 
     // creates an item based on user input
-    public static void create(Item item) {
+    public static void create() {
         // CODE FROM MENU TO ADD TO METHOD
 //        System.out.println("\nCREATE ITEM");
 //        userScanner.nextLine();
@@ -108,7 +111,7 @@ public class InventoryService {
     }
 
     // run after confirming with user with inventorySearch
-    public static void delete(int id) {
+    public static void delete() {
         // CODE FROM MENU TO ADD TO METHOD
         // System.out.println("\nDELETE ITEM");
         // System.out.println("Please enter the id of the item to be deleted: ");
