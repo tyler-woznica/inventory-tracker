@@ -22,33 +22,8 @@ public class InventoryService {
 
         id = userScanner.nextInt();
 
-        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
-        String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
-
-        try (Connection conn = MySQLConnector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            // set input to the query
-            stmt.setInt(1, id);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println("*** SEARCH RESULTS ***");
-
-                    System.out.println(
-                            rs.getInt("id") + " | " +
-                                    rs.getString("name") + " | " +
-                                    rs.getInt("quantity") + " | " + "$" +
-                                    rs.getDouble("price")
-                    );
-                } else {
-                    System.out.println("No product found with ID: " + id);
-                }
-            }
-
-        } catch (SQLException e) {
-            System.out.println("*** Connection to Database Failed ***");
-        }
+        System.out.println("*** SEARCH RESULTS ***");
+        lookup(id);
     }
 
 
@@ -98,9 +73,9 @@ public class InventoryService {
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setString(1, item.getName());
-            stmt.setInt(2, item.getQuantity());
-            stmt.setDouble(3, item.getPrice());
+//            stmt.setString(1, item.getName());
+//            stmt.setInt(2, item.getQuantity());
+//            stmt.setDouble(3, item.getPrice());
 
             stmt.executeUpdate();
 
@@ -112,20 +87,43 @@ public class InventoryService {
 
     // run after confirming with user with inventorySearch
     public static void delete() {
-        // CODE FROM MENU TO ADD TO METHOD
-        // System.out.println("\nDELETE ITEM");
-        // System.out.println("Please enter the id of the item to be deleted: ");
-        // int id = userScanner.nextInt();
-        // System.out.println("The following product is about to be deleted: ");
-        // InventoryService.inventorySearch(id);
-        // System.out.println("Press 1 to delete or press 2 to cancel: ");
-        // int check = userScanner.nextInt();
-        // if (check == 1) {
-        // InventoryService.deleteInventory(id);
-        // } else {
-        // break;
-        // }
-        String query = "DELETE FROM inventory WHERE id = ?";
+        System.out.println("*** DELETE ITEM ***");
+        System.out.println("Please enter the id of the item to delete:");
+        id = userScanner.nextInt();
+        System.out.println("The following product is about to be deleted: ");
+        lookup(id);
+        System.out.println("Press 1 to delete or press 2 to cancel: ");
+        int check = userScanner.nextInt();
+        if (check == 1) {
+            String query = "DELETE FROM inventory WHERE id = ?";
+
+            try (Connection conn = MySQLConnector.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                // set input to the query
+                stmt.setInt(1, id);
+
+                int rowsDeleted = stmt.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    System.out.println("*** ITEM DELETED ***");
+                } else {
+                    System.out.println("*** NO ITEM FOUND WITH ID: " + id + "***");
+                }
+            } catch (SQLException e) {
+                System.out.println("\n*** Connection to Database Failed ***\n");
+            }
+            System.out.println();
+        } else {
+            System.out.println("*** RETURNING TO INVENTORY MENU ***");
+        }
+
+    }
+
+    public static void lookup(int id) {
+
+        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
+        String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -133,17 +131,22 @@ public class InventoryService {
             // set input to the query
             stmt.setInt(1, id);
 
-            int rowsDeleted = stmt.executeUpdate();
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
 
-            if (rowsDeleted > 0) {
-                System.out.println("Product with ID " + id + " deleted.");
-            } else {
-                System.out.println("No product found with ID: " + id);
+                    System.out.println(
+                            rs.getInt("id") + " | " +
+                                    rs.getString("name") + " | " +
+                                    rs.getInt("quantity") + " | " + "$" +
+                                    rs.getDouble("price")
+                    );
+                } else {
+                    System.out.println("No product found with ID: " + id);
+                }
             }
 
         } catch (SQLException e) {
-            System.out.println("\n*** Connection to Database Failed ***\n");
+            System.out.println("*** Connection to Database Failed ***");
         }
-        System.out.println();
     }
 }
