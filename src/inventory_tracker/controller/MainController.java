@@ -1,10 +1,7 @@
 package inventory_tracker.controller;
 import inventory_tracker.data.Analysis;
 import inventory_tracker.model.Item;
-import inventory_tracker.services.CustomerService;
-import inventory_tracker.services.ExceptionService;
-import inventory_tracker.services.InventoryService;
-import inventory_tracker.services.OrderService;
+import inventory_tracker.services.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -184,7 +181,6 @@ public class MainController {
                                     default:
                                         System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
-                                // customer menu catch statement
                             } catch (InputMismatchException e) {
                                 customerMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
@@ -228,7 +224,6 @@ public class MainController {
                                     default:
                                         System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
-                                // import/export menu catch statement
                             } catch (InputMismatchException e) {
                                 analysisMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
@@ -241,8 +236,13 @@ public class MainController {
                         int impExpSelection = 0;
 
                         while (impExpSelection != 5) {
-                            System.out.println("1. Import Inventory\n2. Export Inventory\n3. Import Customers\n" +
-                                    "4. Export Customers\n5. Main Menu\n");
+                            System.out.println("""
+                                    1. Import Inventory
+                                    2. Export Inventory
+                                    3. Import Customers
+                                    4. Export Customers
+                                    5. Main Menu
+                                    """);
 
                             // import/export try statement
                             try{
@@ -252,22 +252,19 @@ public class MainController {
 
                                     // import inventory
                                     case 1:
-                                        System.out.println("\nIMPORT INVENTORY");
+                                        IOService.inventoryImport();
                                         break;
-
                                     // export inventory
                                     case 2:
-                                        System.out.println("\nEXPORT INVENTORY");
+                                        IOService.inventoryExport();
                                         break;
-
                                     // import customers
                                     case 3:
-                                        System.out.println("\nIMPORT CUSTOMERS");
+                                        IOService.customerImport();
                                         break;
                                     // export customers
                                     case 4:
-                                        System.out.println("\nEXPORT CUSTOMERS");
-
+                                        IOService.customerExport();
                                     // return to main menu
                                     case 5:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
@@ -275,7 +272,6 @@ public class MainController {
                                     default:
                                         System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
-                                // import/export menu catch statement
                             } catch (InputMismatchException e) {
                                 impExpSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
@@ -284,7 +280,7 @@ public class MainController {
 
                     // quit the program
                     case 6:
-                        System.out.println("\nCLOSING PROGRAM\n");
+                        System.out.println("\nCLOSING INVENTORY TRACKER\n");
                         break;
                     default:
                         System.out.println("*** INVALID INPUT: Please select an option ***\n");
