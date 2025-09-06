@@ -96,66 +96,66 @@ public class MainController {
                         }
                         break;
 
-                    // order menu options
+                    // order menu
                     case 2:
                         System.out.println("ORDERS");
 
                         int orderMenuSelection = 0;
 
-                        while (orderMenuSelection != 4) {
-                            System.out.println("1. Search\n2. Create\n3. Delete\n4. Main Menu\n");
+                        while (orderMenuSelection != 5) {
+                            System.out.println("""
+                                    1. Search
+                                    2. Update
+                                    3. Create
+                                    4. Delete
+                                    5. Main Menu
+                                    """);
 
                             // order menu try statement
                             try{
-                                orderSelection = userScanner.nextInt();
+                                orderMenuSelection = userScanner.nextInt();
 
-                                switch (orderSelection) {
-
+                                switch (orderMenuSelection) {
                                     // order search
                                     case 1:
-                                        int orderID;
-                                        System.out.println("\nORDER SEARCH");
-                                        System.out.println("Please enter the customer ID: ");
-                                        orderID = userScanner.nextInt();
-                                        OrderService.orderSearch(orderID);
+                                        OrderService.search();
                                         break;
-
-                                    // create order
                                     case 2:
-                                        System.out.println("\nCREATE ORDER - CURRENTLY UNAVAILABLE");
-                                        break;
-
-                                    // delete order
+                                        OrderService.update();
+                                    // create order
                                     case 3:
-                                        System.out.println("\nDELETE ORDER - CURRENTLY UNAVAILABLE");
+                                        OrderService.create();
                                         break;
-
-                                    // return to main menu
+                                    // delete order
                                     case 4:
+                                        OrderService.delete();
+                                        break;
+                                    // return to main menu
+                                    case 5:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
                                         System.out.println("INVALID INPUT: Please select an option\n");
                                 }
-                                // order menu catch statement
                             } catch (InputMismatchException e) {
-                                orderSelection = ExceptionService.handleInputMismatch(userScanner);
+                                orderMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;
-                    // customer menu options
+
+                    // customer menu
                     case 3:
                         System.out.println("CUSTOMERS");
-                        int customerSelection = 0;
+                        int customerMenuSelection = 0;
 
-                        while (customerSelection != 4) {
-                            System.out.println("1. Search\n2. Create\n3. Delete\n4. Main Menu\n");
+                        while (customerMenuSelection != 5) {
+                            System.out.println("""1. Search\n2. Create\n3. Delete\n4. Main Menu\n""");
 
                             // customer menu try statement
                             try{
-                                customerSelection = userScanner.nextInt();
+                                customerMenuSelection = userScanner.nextInt();
 
-                                switch (customerSelection) {
+                                switch (customerMenuSelection) {
 
                                     // customer search
                                     case 1:
@@ -185,7 +185,7 @@ public class MainController {
                                 }
                                 // customer menu catch statement
                             } catch (InputMismatchException e) {
-                                customerSelection = ExceptionService.handleInputMismatch(userScanner);
+                                customerMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;

@@ -10,6 +10,13 @@ import java.sql.SQLException;
 public class OrderService {
 
     public static void search(int id) {
+
+        // CODE FROM MENU TO ADD TO METHOD
+        // int orderID;
+        // System.out.println("\nORDER SEARCH");
+        // System.out.println("Please enter the customer ID: ");
+        // orderID = userScanner.nextInt();
+        // OrderService.orderSearch(orderID);
         String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -36,6 +43,10 @@ public class OrderService {
             e.printStackTrace();
         }
         System.out.println();
+    }
+
+    public static void update() {
+
     }
 
     // creates an item based on user input
