@@ -13,13 +13,14 @@ public class InventoryService {
     static int quantity;
     static double price;
     static Scanner userScanner = new Scanner(System.in);
+    static int check;
 
 
     public static void search() {
 
         System.out.println("*** INVENTORY SEARCH ***");
-        System.out.println("Please enter the item ID:");
 
+        System.out.println("Please enter the item ID:");
         id = userScanner.nextInt();
 
         System.out.println("*** SEARCH RESULTS ***");
@@ -51,38 +52,55 @@ public class InventoryService {
 
     // updates existing item based on user input
     public static void update() {
-
+        System.out.println("*** ITEM UPDATE ***");
+        System.out.println("Please enter the ID of the item to update:");
+        id = userScanner.nextInt();
+        lookup(id);
+        System.out.println("What field would you like to update?");
+        // insert switch
     }
 
     // creates an item based on user input
     public static void create() {
-        // CODE FROM MENU TO ADD TO METHOD
-//        System.out.println("\nCREATE ITEM");
-//        userScanner.nextLine();
-//        System.out.println("Enter new item name: ");
-//        String name = userScanner.nextLine();
-//        System.out.println("Enter new item quantity: ");
-//        int quantity = Integer.parseInt(userScanner.nextLine());
-//        System.out.println("Enter new item price per unit");
-//        double price = Double.parseDouble(userScanner.nextLine());
-//        Item item = new Item(name, quantity, price);
-//        InventoryService.createInventory(item);
-//        System.out.println("*** Item Created ***");
-        String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)";
 
-        try (Connection conn = MySQLConnector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+        System.out.println("*** CREATE ITEM ***");
+        userScanner.nextLine();
 
-//            stmt.setString(1, item.getName());
-//            stmt.setInt(2, item.getQuantity());
-//            stmt.setDouble(3, item.getPrice());
+        System.out.println("Enter new item name:");
+        name = userScanner.nextLine();
 
-            stmt.executeUpdate();
+        System.out.println("Enter new item quantity:");
+        quantity = Integer.parseInt(userScanner.nextLine());
 
-        } catch (SQLException e) {
-            System.out.println("Error inserting record into inventory.");
+        System.out.println("Enter new item price per unit");
+        price = Double.parseDouble(userScanner.nextLine());
+
+        Item item = new Item(name, quantity, price);
+
+        System.out.println("The following item is about to be created.");
+        item.toString();
+
+        System.out.println("Enter 1 to create or 2 to cancel:");
+        check = userScanner.nextInt();
+
+        if (check == 1) {
+            String query = "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)";
+
+            try (Connection conn = MySQLConnector.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                stmt.setString(1, item.getName());
+                stmt.setInt(2, item.getQuantity());
+                stmt.setDouble(3, item.getPrice());
+
+                stmt.executeUpdate();
+
+            } catch (SQLException e) {
+                System.out.println("Error inserting record into inventory.");
+            }
+        } else {
+            System.out.println("*** RETURNING TO INVENTORY MENU ***");
         }
-
     }
 
     // run after confirming with user with inventorySearch
@@ -92,8 +110,8 @@ public class InventoryService {
         id = userScanner.nextInt();
         System.out.println("The following product is about to be deleted: ");
         lookup(id);
-        System.out.println("Press 1 to delete or press 2 to cancel: ");
-        int check = userScanner.nextInt();
+        System.out.println("Enter 1 to delete or 2 to cancel: ");
+        check = userScanner.nextInt();
         if (check == 1) {
             String query = "DELETE FROM inventory WHERE id = ?";
 
@@ -120,7 +138,8 @@ public class InventoryService {
 
     }
 
-    public static void lookup(int id) {
+    // helper InventoryService methods
+    static void lookup(int id) {
 
         System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
         String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";

@@ -96,12 +96,15 @@ public class MainController {
 
                     // order menu
                     case 2:
-                        System.out.println("ORDERS");
 
                         int orderMenuSelection = 0;
 
                         while (orderMenuSelection != 5) {
-                            System.out.println("""
+
+                            // order menu try statement
+                            try{
+                                System.out.println("ORDERS");
+                                System.out.println("""
                                     1. Search
                                     2. Update
                                     3. Create
@@ -109,14 +112,12 @@ public class MainController {
                                     5. Main Menu
                                     """);
 
-                            // order menu try statement
-                            try{
                                 orderMenuSelection = userScanner.nextInt();
 
                                 switch (orderMenuSelection) {
                                     // order search
                                     case 1:
-                                        //OrderService.search();
+                                        OrderService.search();
                                         break;
                                     case 2:
                                         OrderService.update();

@@ -6,43 +6,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class OrderService {
 
-    public static void search(int id) {
+    static int id;
+    static int customer_id;
+    static String order_date;
+    static double total;
+    static Scanner userScanner = new Scanner(System.in);
+    static int check;
 
-        // CODE FROM MENU TO ADD TO METHOD
-        // int orderID;
-        // System.out.println("\nORDER SEARCH");
-        // System.out.println("Please enter the customer ID: ");
-        // orderID = userScanner.nextInt();
-        // OrderService.orderSearch(orderID);
-        String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
+    public static void search() {
 
-        try (Connection conn = MySQLConnector.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+        System.out.println("*** ORDER SEARCH ***");
 
-            // set input to the query
-            stmt.setInt(1, id);
+        System.out.println("Please enter the order ID:");
+        id = userScanner.nextInt();
 
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    System.out.println(
-                            rs.getInt("id") + " | " +
-                                    rs.getInt("customer_id") + " | " +
-                                    rs.getString("order_date") + " | " + "$" +
-                                    rs.getDouble("total")
-                    );
-                } else {
-                    System.out.println("No order found with ID: " + id);
-                }
-            }
-
-        } catch (SQLException e) {
-            System.out.println("\n*** Connection to Database Failed ***\n");
-            e.printStackTrace();
-        }
-        System.out.println();
+        System.out.println("*** SEARCH RESULTS ***");
+        lookup(id);
     }
 
     public static void update() {
@@ -57,5 +40,34 @@ public class OrderService {
     // deletes an item based on product id with confirmation
     public static void delete() {
 
+    }
+
+    static void lookup(int id) {
+        System.out.println("ID | CUSTOMER ID | ORDER DATE | TOTAL");
+        String query = "SELECT id, customer_id, order_date, total FROM orders WHERE id = ?";
+
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            // set input to the query
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+
+                    System.out.println(
+                            rs.getInt("id") + " | " +
+                                    rs.getInt("customer_id") + " | " +
+                                    rs.getString("order_date") + " | " + "$" +
+                                    rs.getDouble("total")
+                    );
+                } else {
+                    System.out.println("No order found with ID: " + id);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("*** Connection to Database Failed ***");
+        }
     }
 }
