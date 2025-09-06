@@ -1,4 +1,5 @@
 package inventory_tracker.controller;
+import inventory_tracker.data.Analysis;
 import inventory_tracker.model.Item;
 import inventory_tracker.services.CustomerService;
 import inventory_tracker.services.ExceptionService;
@@ -135,7 +136,7 @@ public class MainController {
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 orderMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -181,7 +182,7 @@ public class MainController {
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
                                 // customer menu catch statement
                             } catch (InputMismatchException e) {
@@ -196,35 +197,36 @@ public class MainController {
                         int analysisMenuSelection = 0;
 
                         while (analysisMenuSelection != 4) {
-                            System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers\n" +
-                                    "4. Main Menu\n");
+                            System.out.println("""
+                                    1. Best Sellers
+                                    2. Top 3 Customers
+                                    3. Bottom 3 Customers
+                                    4. Main Menu
+                                    """);
 
                             // analysis try statement
                             try{
                                 analysisMenuSelection = userScanner.nextInt();
 
                                 switch (analysisMenuSelection) {
-
                                     // best sellers
                                     case 1:
-                                        System.out.println("\nBEST SELLERS");
+                                        Analysis.bestSellers();
                                         break;
-
-                                    // export inventory
+                                    // top 3 customers
                                     case 2:
-                                        System.out.println("\nTOP 3 CUSTOMERS");
+                                        Analysis.topThree();
                                         break;
-
-                                    // import customers
+                                    // bottom 3 customers
                                     case 3:
-                                        System.out.println("\nBOTTOM 3 CUSTOMERS");
+                                        Analysis.bottomThree();
                                         break;
-                                    // export customers
+                                    // return to main menu
                                     case 4:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
@@ -271,7 +273,7 @@ public class MainController {
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("INVALID INPUT: Please select an option\n");
+                                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
@@ -285,7 +287,7 @@ public class MainController {
                         System.out.println("\nCLOSING PROGRAM\n");
                         break;
                     default:
-                        System.out.println("INVALID INPUT: Please select an option\n");
+                        System.out.println("*** INVALID INPUT: Please select an option ***\n");
                 }
             // main menu catch
             } catch (InputMismatchException e) {
