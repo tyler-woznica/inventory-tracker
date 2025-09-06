@@ -149,35 +149,35 @@ public class MainController {
                         int customerMenuSelection = 0;
 
                         while (customerMenuSelection != 5) {
-                            System.out.println("""1. Search\n2. Create\n3. Delete\n4. Main Menu\n""");
+                            System.out.println("""
+                                    1. Search
+                                    2. Create
+                                    3. Delete
+                                    4. Main Menu
+                                    """);
 
                             // customer menu try statement
                             try{
                                 customerMenuSelection = userScanner.nextInt();
 
                                 switch (customerMenuSelection) {
-
                                     // customer search
                                     case 1:
-                                        int customerID;
-                                        System.out.println("\nCUSTOMER SEARCH");
-                                        System.out.println("Please enter the customer ID: ");
-                                        customerID = userScanner.nextInt();
-                                        CustomerService.customerSearch(customerID);
+                                        CustomerService.search();
                                         break;
-
-                                    // create customer
+                                    // update customer
                                     case 2:
-                                        System.out.println("\nCREATE CUSTOMER - CURRENTLY UNAVAILABLE");
-                                        break;
-
-                                    // delete customer
+                                        CustomerService.update();
+                                    // create customer
                                     case 3:
-                                        System.out.println("\nDELETE CUSTOMER - CURRENTLY UNAVAILABLE");
+                                        CustomerService.create();
                                         break;
-
-                                    // return to main menu
+                                    // delete customer
                                     case 4:
+                                        CustomerService.delete();
+                                        break;
+                                    // return to main menu
+                                    case 5:
                                         System.out.println("*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
@@ -193,18 +193,17 @@ public class MainController {
                     // analysis menu options
                     case 4:
                         System.out.println("ANALYSIS");
-                        int analysisSelection = 0;
+                        int analysisMenuSelection = 0;
 
-                        while (analysisSelection != 4) {
-                            System.out.println("*** ANALYSIS CURRENTLY UNAVAILABLE ***");
+                        while (analysisMenuSelection != 4) {
                             System.out.println("1. Best Sellers\n2. Top 3 Customers\n3. Bottom 3 Customers\n" +
                                     "4. Main Menu\n");
 
                             // analysis try statement
                             try{
-                                analysisSelection = userScanner.nextInt();
+                                analysisMenuSelection = userScanner.nextInt();
 
-                                switch (analysisSelection) {
+                                switch (analysisMenuSelection) {
 
                                     // best sellers
                                     case 1:
@@ -229,7 +228,7 @@ public class MainController {
                                 }
                                 // import/export menu catch statement
                             } catch (InputMismatchException e) {
-                                analysisSelection = ExceptionService.handleInputMismatch(userScanner);
+                                analysisMenuSelection = ExceptionService.handleInputMismatch(userScanner);
                             }
                         }
                         break;

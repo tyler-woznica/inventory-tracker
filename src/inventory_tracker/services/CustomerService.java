@@ -11,6 +11,11 @@ public class CustomerService {
 
     // search for a specific item using the inventory id
     public static void search(int id) {
+//        int customerID;
+//        System.out.println("\nCUSTOMER SEARCH");
+//        System.out.println("Please enter the customer ID: ");
+//        customerID = userScanner.nextInt();
+//        CustomerService.customerSearch(customerID);
         String query = "SELECT id, business_name, email, phone, city, state FROM customers WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
@@ -39,6 +44,10 @@ public class CustomerService {
             e.printStackTrace();
         }
         System.out.println();
+    }
+
+    public static void update() {
+
     }
 
     // creates a customer based on user input
