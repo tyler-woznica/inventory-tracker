@@ -107,8 +107,8 @@ public class MainController {
                                 System.out.println("""
                                     1. Search
                                     2. Update
-                                    3. Create
-                                    4. Delete
+                                    3. Create Order
+                                    4. Delete Order
                                     5. Main Menu
                                     """);
 
@@ -150,9 +150,9 @@ public class MainController {
                         while (customerMenuSelection != 5) {
                             System.out.println("""
                                     1. Search
-                                    2. Create
-                                    3. Delete
-                                    4. Main Menu
+                                    2. Update Customer
+                                    3. Create Customer
+                                    4. Delete Customer
                                     5. Main Menu
                                     """);
 

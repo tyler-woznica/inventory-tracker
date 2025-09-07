@@ -27,5 +27,4 @@ public class MySQLConnector {
     public static void methodTry() {
 
     }
-
 }
