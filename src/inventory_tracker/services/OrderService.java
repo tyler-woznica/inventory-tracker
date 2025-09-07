@@ -29,16 +29,59 @@ public class OrderService {
     }
 
     public static void update() {
-
+        System.out.println("*** ORDER UPDATE ***");
+        System.out.println("Please enter the ID of the order to update:");
+        id = userScanner.nextInt();
+        lookup(id);
+        System.out.println("What field would you like to update?");
+        // insert switch
     }
 
-    // creates an item based on user input
     public static void create() {
+        System.out.println("*** CREATE ORDER ***");
+        userScanner.nextLine();
 
+        System.out.println("Enter the customer ID for this order:");
+        customer_id = userScanner.nextInt();
+
+        System.out.println("Enter the date or leave blank to auto-generate:");
+        order_date = userScanner.nextLine();
+
+        // need to add functionality to auto calculate total and pull inventory
     }
 
-    // deletes an item based on product id with confirmation
+
     public static void delete() {
+        System.out.println("*** DELETE ORDER ***");
+        System.out.println("Please enter the ID of the order to delete:");
+        id = userScanner.nextInt();
+        System.out.println("The following order is about to be deleted:");
+        lookup(id);
+        System.out.println("Enter 1 to delete or 2 to cancel: ");
+        check = userScanner.nextInt();
+        if (check == 1) {
+            String query = "DELETE FROM orders WHERE id = ?";
+
+            try (Connection conn = MySQLConnector.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                // set input to the query
+                stmt.setInt(1, id);
+
+                int rowsDeleted = stmt.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    System.out.println("*** ORDER DELETED ***");
+                } else {
+                    System.out.println("*** NO ORDER FOUND WITH ID: " + id + "***");
+                }
+            } catch (SQLException e) {
+                System.out.println("\n*** Connection to Database Failed ***\n");
+            }
+            System.out.println();
+        } else {
+            System.out.println("*** RETURNING TO INVENTORY MENU ***");
+        }
 
     }
 

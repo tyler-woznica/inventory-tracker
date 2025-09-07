@@ -163,7 +163,7 @@ public class MainController {
                                 switch (customerMenuSelection) {
                                     // customer search
                                     case 1:
-                                        //CustomerService.search();
+                                        CustomerService.search();
                                         break;
                                     // update customer
                                     case 2:

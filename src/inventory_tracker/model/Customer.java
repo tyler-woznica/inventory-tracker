@@ -3,49 +3,44 @@ package inventory_tracker.model;
 public class Customer {
 
     // data retrieved from database
-    public static int id;
-    private String businessName;
-    private String contactName;
+    private int id;
+    private String business_name;
     private String email;
-    private int phoneNumber;
-    private String street;
+    private Long phone;
     private String city;
     private String state;
-    private int zip;
 
-    public Customer(String businessName, String contactName, String email, int phoneNumber, String street, String city, String state, int zip) {
-        this.businessName = businessName;
-        this.contactName = contactName;
+    public Customer(int id, String business_name, String email, Long phone, String city, String state) {
+        this.id = id;
+        this.business_name = business_name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
+        this.phone = phone;
         this.city = city;
         this.state = state;
-        this.zip = zip;
     }
 
-    public static int getId() {
+    public Customer(String business_name, String email, Long phone, String city, String state) {
+        this.business_name = business_name;
+        this.email = email;
+        this.phone = phone;
+        this.city = city;
+        this.state = state;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        Customer.id = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getBusinessName() {
-        return businessName;
+    public String getBusiness_name() {
+        return business_name;
     }
 
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
-
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
+    public void setBusiness_name(String business_name) {
+        this.business_name = business_name;
     }
 
     public String getEmail() {
@@ -56,20 +51,12 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public Long getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setPhone(Long phone) {
+        this.phone = phone;
     }
 
     public String getCity() {
@@ -88,25 +75,15 @@ public class Customer {
         this.state = state;
     }
 
-    public int getZip() {
-        return zip;
-    }
-
-    public void setZip(int zip) {
-        this.zip = zip;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
-                "businessName='" + businessName + '\'' +
-                ", contactName='" + contactName + '\'' +
+                "id=" + id +
+                ", business_name='" + business_name + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", street='" + street + '\'' +
+                ", phone=" + phone +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zip=" + zip +
                 '}';
     }
 

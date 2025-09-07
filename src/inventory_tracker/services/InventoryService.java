@@ -2,7 +2,6 @@ package inventory_tracker.services;
 
 import inventory_tracker.data.MySQLConnector;
 import inventory_tracker.model.Item;
-
 import java.sql.*;
 import java.util.Scanner;
 
@@ -50,7 +49,6 @@ public class InventoryService {
         }
     }
 
-    // updates existing item based on user input
     public static void update() {
         System.out.println("*** ITEM UPDATE ***");
         System.out.println("Please enter the ID of the item to update:");
@@ -108,7 +106,7 @@ public class InventoryService {
         System.out.println("*** DELETE ITEM ***");
         System.out.println("Please enter the id of the item to delete:");
         id = userScanner.nextInt();
-        System.out.println("The following product is about to be deleted: ");
+        System.out.println("The following item is about to be deleted: ");
         lookup(id);
         System.out.println("Enter 1 to delete or 2 to cancel: ");
         check = userScanner.nextInt();
