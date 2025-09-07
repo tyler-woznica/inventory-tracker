@@ -1,6 +1,7 @@
 # Inventory Tracker
 
 A simple, CLI inventory management app.
+Currently a heavy work-in-progress ortfolio example.
 
 ## Features
 - Track inventory, customers, and orders.
