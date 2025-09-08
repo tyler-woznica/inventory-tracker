@@ -53,10 +53,15 @@ public class InventoryService {
         System.out.println("*** ITEM UPDATE ***");
         System.out.println("Please enter the ID of the item to update:");
         id = userScanner.nextInt();
-
+        System.out.println("If this item is correct, enter 1.");
         lookup(id);
-        System.out.println("What field would you like to update?");
-        // insert switch
+        check = userScanner.nextInt();
+        if (check == 1) {
+            System.out.println("What field would you like to update?");
+            // switch?
+        } else {
+
+        }
     }
 
     // creates an item based on user input
