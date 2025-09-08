@@ -58,7 +58,10 @@ public class InventoryService {
         check = userScanner.nextInt();
         if (check == 1) {
             System.out.println("What field would you like to update?");
+            System.out.println("""
+                    """);
             // switch?
+
         } else {
 
         }
