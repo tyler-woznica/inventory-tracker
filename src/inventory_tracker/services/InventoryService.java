@@ -3,6 +3,7 @@ package inventory_tracker.services;
 import inventory_tracker.data.MySQLConnector;
 import inventory_tracker.model.Item;
 import java.sql.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class InventoryService {
@@ -28,6 +29,7 @@ public class InventoryService {
 
 
     public static void report() {
+
         System.out.println("*** INVENTORY REPORT *** ");
         System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
         String query = "SELECT id, name, quantity, price FROM inventory";
@@ -50,6 +52,11 @@ public class InventoryService {
     }
 
     public static void update() {
+
+        int choice;
+        String sql = "";
+        Object newVal = null;
+
         System.out.println("*** ITEM UPDATE ***");
         System.out.println("Please enter the ID of the item to update:");
         id = userScanner.nextInt();
@@ -59,10 +66,51 @@ public class InventoryService {
         if (check == 1) {
             System.out.println("What field would you like to update?");
             System.out.println("""
+                    1. Name
+                    2. Quantity
+                    3. Price
                     """);
-            // switch?
+            choice = userScanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter new name: ");
+                    newVal = userScanner.nextLine();
+                    sql = "UPDATE inventory SET name = ? WHERE id = ?";
+                    break;
+                case 2:
+                    System.out.print("Enter new quantity: ");
+                    newVal = userScanner.nextInt();
+                    sql = "UPDATE inventory SET quantity = ? WHERE id = ?";
+                    break;
+                case 3:
+                    System.out.print("Enter new price: ");
+                    newVal = userScanner.nextDouble();
+                    sql = "UPDATE inventory SET price = ? WHERE id = ?";
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    return;
+            }
+
+            try (Connection conn = MySQLConnector.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setObject(1, newVal);
+                stmt.setInt(2, id);
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("*** ITEM UPDATED SUCCESSFULLY ***");
+                } else {
+                    System.out.println("No item found with ID " + id);
+                }
+            } catch (SQLException e) {
+                System.out.println("*** Connection to Database Failed ***");
+
+            }
 
         } else {
+            System.out.println("*** UPDATE CANCELLED ***");
 
         }
     }
@@ -112,6 +160,7 @@ public class InventoryService {
 
     // run after confirming with user with inventorySearch
     public static void delete() {
+
         System.out.println("*** DELETE ITEM ***");
         System.out.println("Please enter the id of the item to delete:");
         id = userScanner.nextInt();

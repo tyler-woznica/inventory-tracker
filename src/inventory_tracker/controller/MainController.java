@@ -1,6 +1,4 @@
 package inventory_tracker.controller;
-import inventory_tracker.data.Analysis;
-import inventory_tracker.model.Item;
 import inventory_tracker.services.*;
 
 import java.util.InputMismatchException;
@@ -209,15 +207,15 @@ public class MainController {
                                 switch (analysisMenuSelection) {
                                     // best sellers
                                     case 1:
-                                        Analysis.bestSellers();
+                                        //Analysis.bestSellers();
                                         break;
                                     // top 3 customers
                                     case 2:
-                                        Analysis.topThree();
+                                        //Analysis.topThree();
                                         break;
                                     // bottom 3 customers
                                     case 3:
-                                        Analysis.bottomThree();
+                                        //Analysis.bottomThree();
                                         break;
                                     // return to main menu
                                     case 4:
