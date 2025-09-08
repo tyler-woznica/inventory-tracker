@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ExceptionService {
 
     // helper for menu selection errors
-    // replaces this block
+    // replaces this block:
     // catch (InputMismatchException e) {
     //     System.out.println("INVALID INPUT: Please enter a number only\n");
     //     userScanner.nextLine();

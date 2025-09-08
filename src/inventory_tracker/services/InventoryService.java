@@ -53,6 +53,7 @@ public class InventoryService {
         System.out.println("*** ITEM UPDATE ***");
         System.out.println("Please enter the ID of the item to update:");
         id = userScanner.nextInt();
+
         lookup(id);
         System.out.println("What field would you like to update?");
         // insert switch

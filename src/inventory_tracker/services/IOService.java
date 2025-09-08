@@ -1,7 +1,6 @@
 package inventory_tracker.services;
 
 import inventory_tracker.data.MySQLConnector;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;

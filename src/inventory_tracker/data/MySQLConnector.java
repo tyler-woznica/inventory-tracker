@@ -8,6 +8,8 @@ public class MySQLConnector {
 
         private static final String URL = "jdbc:mysql://127.0.0.1:3306/inventory_tracker?useSSL=false";
         private static final String USER = "root";
+
+        // use a system environment variable
         private static final String PASSWORD = System.getenv("DB_PASS");
 
         static {
