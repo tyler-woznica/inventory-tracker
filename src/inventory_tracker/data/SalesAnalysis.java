@@ -28,6 +28,10 @@ public class SalesAnalysis {
         }
     }
 
+    private static void bubbleSort(List<ResultRow> list, boolean ascending) {
+        int n = list.size();
+    }
+
     private static List<ResultRow> getTopOrBottom(String sql, boolean top, int limit) {
         List<ResultRow> results = new ArrayList<>();
 
