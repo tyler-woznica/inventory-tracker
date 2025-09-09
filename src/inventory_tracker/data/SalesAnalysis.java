@@ -1,5 +1,6 @@
 package inventory_tracker.data;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,13 +71,8 @@ public class SalesAnalysis {
 
     }
 
-    private static List<ResultRow> mergeSort(List<ResultRow> list, boolean ascending) {
-        if (list.size() <= 1) {
-            return list;
-        }
+    private static void insertionSort(List<ResultRow> list, boolean ascending) {
 
-        int mid = list.size() / 2;
-        List<ResultRow> left = mergeSort()
     }
 
 
