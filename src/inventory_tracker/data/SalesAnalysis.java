@@ -1,14 +1,9 @@
 package inventory_tracker.data;
 
-import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class SalesAnalysis {
 
@@ -29,52 +24,106 @@ public class SalesAnalysis {
         }
     }
 
+    private static List<ResultRow> getTopOrBottom(
+            String sql, String label, int n, boolean top) {
 
-
-    private static List<ResultRow> getTopOrBottom(String sql, boolean top, int limit) {
         List<ResultRow> results = new ArrayList<>();
 
         try (Connection conn = MySQLConnector.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                String label = rs.getString(1);
-                double value = rs.getDouble(2);
-                results.add(new ResultRow(label, value));
+                results.add(new ResultRow(rs.getString(label), rs.getDouble("value")));
             }
         } catch (SQLException e) {
-            System.out.println("*** DATABASE ERROR ***");
+            System.out.println("*** ERROR CONNECTING TO DATABASE ***");
         }
 
-        results.sort((a, b) -> Double.compare(a.value, b.value));
-        if (top) {
-            Collections.reverse(results);
+        // Use insertion sort instead of Collections.sort
+        insertionSort(results, !top); // if top=true → descending, else ascending
+
+        // Trim to N results
+        return results.subList(0, Math.min(n, results.size()));
+    }
+
+    public static void topThreeItems() throws SQLException {
+        String sql = """
+        SELECT i.name, SUM(oi.quantity) AS value
+        FROM inventory i
+        JOIN order_items oi ON i.id = oi.inventory_id
+        GROUP BY i.id, i.name
+        """;
+
+        List<ResultRow> results = getTopOrBottom(sql, "name", 3, true);
+
+        System.out.println("*** TOP 3 ITEMS SOLD ***");
+        for (ResultRow r : results) {
+            System.out.println(r.label + " - Total Sold: " + (int) r.value);
         }
-
-        return results.stream().limit(limit).collect(Collectors.toList());
     }
 
-    public static void topThreeItems() {
+    public static void bottomThreeItems() throws SQLException {
+        String sql = """
+        SELECT i.name, SUM(oi.quantity) AS value
+        FROM inventory i
+        JOIN order_items oi ON i.id = oi.inventory_id
+        GROUP BY i.id, i.name
+        """;
 
+        List<ResultRow> results = getTopOrBottom(sql, "name", 3, false);
+
+        System.out.println("*** BOTTOM 3 ITEMS SOLD ***");
+        for (ResultRow r : results) {
+            System.out.println(r.label + " - Total Sold: " + (int) r.value);
+        }
     }
 
-    public static void bottomThreeItems() {
+    public static void topThreeCustomers() throws SQLException {
+        String sql = """
+        SELECT c.business_name, SUM(o.total) AS value
+        FROM customers c
+        JOIN orders o ON c.id = o.customer_id
+        GROUP BY c.id, c.business_name
+        """;
 
+        List<ResultRow> results = getTopOrBottom(sql, "business_name", 3, true);
+
+        System.out.println("*** TOP 3 CUSTOMERS BY TOTAL ORDERS ***");
+        for (ResultRow r : results) {
+            System.out.println(r.label + " - Total Orders: $" + r.value);
+        }
     }
 
-    public static void topThreeCustomers() {
+    public static void bottomThreeCustomers() throws SQLException {
+        String sql = """
+        SELECT c.business_name, SUM(o.total) AS value
+        FROM customers c
+        JOIN orders o ON c.id = o.customer_id
+        GROUP BY c.id, c.business_name
+    """;
 
-    }
+        List<ResultRow> results = getTopOrBottom(sql, "business_name", 3, false);
 
-    public static void bottomThreeCustomers() {
-
+        System.out.println("*** BOTTOM 3 CUSTOMERS BY TOTAL ORDERS ***");
+        for (ResultRow r : results) {
+            System.out.println(r.label + " - Total Orders: $" + r.value);
+        }
     }
 
     private static void insertionSort(List<ResultRow> list, boolean ascending) {
+        for (int i = 1; i < list.size(); i++) {
+            ResultRow key = list.get(i);
+            int j = i - 1;
 
+            while (j >= 0 && (ascending
+                    ? list.get(j).value > key.value
+                    : list.get(j).value < key.value)) {
+                list.set(j + 1, list.get(j));
+                j = j - 1;
+            }
+
+            list.set(j + 1, key);
+        }
     }
-
-
-
 }
