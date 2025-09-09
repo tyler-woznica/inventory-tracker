@@ -47,7 +47,7 @@ public class SalesAnalysis {
         return results.subList(0, Math.min(n, results.size()));
     }
 
-    public static void topThreeItems() throws SQLException {
+    public static void topThreeItems() throws SQLException{
         String sql = """
         SELECT i.name, SUM(oi.quantity) AS value
         FROM inventory i

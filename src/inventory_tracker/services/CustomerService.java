@@ -49,11 +49,13 @@ public class CustomerService {
         System.out.println("Enter new customer email:");
         email = userScanner.nextLine();
 
-        System.out.println("Enter new customer phone number (example: 2223334444");
+        System.out.println("Enter new customer phone number (structure example: 000111000)");
         phone = userScanner.nextLong();
 
         System.out.println("Enter new customer city:");
+        userScanner.nextLine();
         city = userScanner.nextLine();
+
 
         System.out.println("Enter new customer state (example: CA):");
         state = userScanner.nextLine();
@@ -61,6 +63,10 @@ public class CustomerService {
         Customer customer = new Customer(business_name, email, phone, city, state);
 
         System.out.println("The following customer is about to be created.");
+        System.out.println("Business Name: " + customer.getBusiness_name());
+        System.out.println("Email: " + customer.getEmail());
+        System.out.println("Phone: " + customer.getPhone());
+        System.out.println("City: " + customer.getCity() + " State: " + customer.getState());
 
         System.out.println("Enter 1 to create or 2 to cancel:");
         check = userScanner.nextInt();
