@@ -1,6 +1,8 @@
 package inventory_tracker.controller;
+import inventory_tracker.data.SalesAnalysis;
 import inventory_tracker.services.*;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -192,12 +194,13 @@ public class MainController {
                         System.out.println("ANALYSIS");
                         int analysisMenuSelection = 0;
 
-                        while (analysisMenuSelection != 4) {
+                        while (analysisMenuSelection != 5) {
                             System.out.println("""
-                                    1. Best Sellers
+                                    1. Top 3 Items
                                     2. Top 3 Customers
-                                    3. Bottom 3 Customers
-                                    4. Main Menu
+                                    3. Bottom 3 Items
+                                    4. Bottom 3 Customers
+                                    5. Main Menu
                                     """);
 
                             // analysis try statement
@@ -207,18 +210,20 @@ public class MainController {
                                 switch (analysisMenuSelection) {
                                     // best sellers
                                     case 1:
-                                        //Analysis.bestSellers();
+                                        SalesAnalysis.topThreeItems();
                                         break;
                                     // top 3 customers
                                     case 2:
-                                        //Analysis.topThree();
+                                        SalesAnalysis.topThreeCustomers();
                                         break;
                                     // bottom 3 customers
                                     case 3:
-                                        //Analysis.bottomThree();
+                                        SalesAnalysis.bottomThreeItems();
                                         break;
                                     // return to main menu
                                     case 4:
+                                        SalesAnalysis.bottomThreeCustomers();
+                                    case 5:
                                         System.out.println("*** RETURNING TO MAIN MENU ***");
                                         break;
                                     default:
@@ -226,6 +231,8 @@ public class MainController {
                                 }
                             } catch (InputMismatchException e) {
                                 analysisMenuSelection = ExceptionService.handleInputMismatch(userScanner);
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
                             }
                         }
                         break;
