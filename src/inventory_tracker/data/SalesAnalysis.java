@@ -28,9 +28,7 @@ public class SalesAnalysis {
         }
     }
 
-    private static void bubbleSort(List<ResultRow> list, boolean ascending) {
-        int n = list.size();
-    }
+
 
     private static List<ResultRow> getTopOrBottom(String sql, boolean top, int limit) {
         List<ResultRow> results = new ArrayList<>();
@@ -71,6 +69,16 @@ public class SalesAnalysis {
     public static void bottomThreeCustomers() {
 
     }
+
+    private static List<ResultRow> mergeSort(List<ResultRow> list, boolean ascending) {
+        if (list.size() <= 1) {
+            return list;
+        }
+
+        int mid = list.size() / 2;
+        List<ResultRow> left = mergeSort()
+    }
+
 
 
 }
