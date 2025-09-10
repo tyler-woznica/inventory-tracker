@@ -13,7 +13,7 @@ public class MainController {
         Scanner userScanner = new Scanner(System.in);
         int mainMenuSelection = 0;
 
-        System.out.println("*** INVENTORY TRACKER ***");
+        System.out.println("\n*** INVENTORY TRACKER v1.0 ***\n");
 
         // menu selection loop
         while (mainMenuSelection != 6) {
@@ -78,11 +78,11 @@ public class MainController {
                                         break;
 
                                     case 6:
-                                        System.out.println("*** RETURNING TO MAIN MENU ***");
+                                        System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
 
                                     default:
-                                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 inventoryMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -126,11 +126,11 @@ public class MainController {
                                         break;
 
                                     case 5:
-                                        System.out.println("*** RETURNING TO MAIN MENU ***");
+                                        System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
 
                                     default:
-                                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 orderMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -175,11 +175,11 @@ public class MainController {
                                         break;
 
                                     case 5:
-                                        System.out.println("*** RETURNING TO MAIN MENU ***");
+                                        System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
 
                                     default:
-                                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 customerMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -224,11 +224,11 @@ public class MainController {
                                         SalesAnalysis.bottomThreeCustomers();
 
                                     case 5:
-                                        System.out.println("*** RETURNING TO MAIN MENU ***");
+                                        System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
 
                                     default:
-                                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 analysisMenuSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -275,10 +275,10 @@ public class MainController {
                                         IOService.customerExport();
 
                                     case 5:
-                                        System.out.println("*** RETURNING TO MAIN MENU ***");
+                                        System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
                                     default:
-                                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
                             } catch (InputMismatchException e) {
                                 impExpSelection = ExceptionService.handleInputMismatch(userScanner);
@@ -288,10 +288,10 @@ public class MainController {
 
                     // quit program
                     case 6:
-                        System.out.println("*** CLOSING INVENTORY TRACKER ***");
+                        System.out.println("\n*** CLOSING INVENTORY TRACKER ***\n");
                         break;
                     default:
-                        System.out.println("*** INVALID INPUT: Please select an option. ***");
+                        System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                 }
             // main menu catch
             } catch (InputMismatchException e) {

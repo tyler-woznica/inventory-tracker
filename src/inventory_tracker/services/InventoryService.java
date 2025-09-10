@@ -133,7 +133,9 @@ public class InventoryService {
         Item item = new Item(name, quantity, price);
 
         System.out.println("The following item is about to be created.");
-        item.toString();
+        System.out.println("Name: " + item.getName() + " | " +
+                "Quantity: " + item.getQuantity() + " | " +
+                "Price/Unit: " + item.getPrice());
 
         System.out.println("Enter 1 to create or 2 to cancel:");
         check = userScanner.nextInt();
@@ -153,8 +155,10 @@ public class InventoryService {
             } catch (SQLException e) {
                 System.out.println("Error inserting record into inventory.");
             }
+
+            System.out.println("*** INVENTORY ITEM CREATED SUCCESSFULLY ***\n");
         } else {
-            System.out.println("*** RETURNING TO INVENTORY MENU ***");
+            System.out.println("*** RETURNING TO INVENTORY MENU ***\n");
         }
     }
 

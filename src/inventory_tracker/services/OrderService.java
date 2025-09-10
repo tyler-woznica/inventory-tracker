@@ -47,6 +47,8 @@ public class OrderService {
         System.out.println("Enter the date or leave blank to auto-generate:");
         order_date = userScanner.nextLine();
 
+
+
         // need to add functionality to auto calculate total and pull inventory
     }
 
