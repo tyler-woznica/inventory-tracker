@@ -130,12 +130,11 @@ public class CustomerService {
     static void lookup(int id) {
 
         System.out.println("ID | BUSINESS NAME | EMAIL | PHONE | CITY, STATE");
-        String query = "SELECT id, name, quantity, price FROM inventory WHERE id = ?";
+        String query = "SELECT id, business_name, email, phone, city, state FROM customers WHERE id = ?";
 
         try (Connection conn = MySQLConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            // set input to the query
             stmt.setInt(1, id);
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -143,12 +142,14 @@ public class CustomerService {
 
                     System.out.println(
                             rs.getInt("id") + " | " +
-                                    rs.getString("name") + " | " +
-                                    rs.getInt("quantity") + " | " + "$" +
-                                    rs.getDouble("price")
+                                    rs.getString("business_name") + " | " +
+                                    rs.getString("email") + " | " +
+                                    rs.getLong("phone") + " | " +
+                                    rs.getString("city") + ", " +
+                                    rs.getString("state")
                     );
                 } else {
-                    System.out.println("No product found with ID: " + id);
+                    System.out.println("No customer found with ID: " + id);
                 }
             }
 
