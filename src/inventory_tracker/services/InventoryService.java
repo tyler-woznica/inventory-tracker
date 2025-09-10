@@ -18,7 +18,7 @@ public class InventoryService {
 
     public static void search() {
 
-        System.out.println("*** INVENTORY SEARCH ***");
+        System.out.println("INVENTORY SEARCH");
 
         System.out.println("Please enter the item ID:");
         id = userScanner.nextInt();
@@ -30,8 +30,8 @@ public class InventoryService {
 
     public static void report() {
 
-        System.out.println("*** INVENTORY REPORT *** ");
-        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT");
+        System.out.println("*** INVENTORY REPORT ***");
+        System.out.println("ID | NAME | QUANTITY | PRICE/UNIT\n");
         String query = "SELECT id, name, quantity, price FROM inventory";
 
         try(Connection conn = MySQLConnector.getConnection();
@@ -49,6 +49,7 @@ public class InventoryService {
         } catch (SQLException e) {
             System.out.println("*** Connection to Database Failed ***");
         }
+        System.out.println();
     }
 
     public static void update() {
@@ -227,5 +228,6 @@ public class InventoryService {
         } catch (SQLException e) {
             System.out.println("*** Connection to Database Failed ***");
         }
+        System.out.println();
     }
 }
