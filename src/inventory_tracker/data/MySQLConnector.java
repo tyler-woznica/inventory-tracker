@@ -19,7 +19,6 @@ public class MySQLConnector {
                 throw new RuntimeException("MySQL driver not found", e);
             }
 
-
     }
 
     public static Connection getConnection() throws SQLException {

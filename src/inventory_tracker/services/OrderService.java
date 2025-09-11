@@ -1,12 +1,7 @@
 package inventory_tracker.services;
 
 import inventory_tracker.data.MySQLConnector;
-import inventory_tracker.model.Item;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 public class OrderService {
@@ -48,10 +43,10 @@ public class OrderService {
 
         int orderId = -1;
 
-        String insertOrderQuery = "INSERT INTO orders (customer_id) VALUES (?)";
+        String orderQuery = "INSERT INTO orders (customer_id) VALUES (?)";
 
         try (Connection conn = MySQLConnector.getConnection();
-             PreparedStatement orderStmt = conn.prepareStatement(insertOrderQuery, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement orderStmt = conn.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS)) {
 
             // Insert order
             orderStmt.setInt(1, customerId);
@@ -84,10 +79,10 @@ public class OrderService {
             System.out.println("Enter quantity:");
             int quantity = Integer.parseInt(userScanner.nextLine());
 
-            String insertItemQuery = "INSERT INTO order_items (order_id, inventory_id, quantity) VALUES (?, ?, ?)";
+            String itemQuery = "INSERT INTO order_items (order_id, inventory_id, quantity) VALUES (?, ?, ?)";
 
             try (Connection conn = MySQLConnector.getConnection();
-                 PreparedStatement itemStmt = conn.prepareStatement(insertItemQuery)) {
+                 PreparedStatement itemStmt = conn.prepareStatement(itemQuery)) {
 
                 itemStmt.setInt(1, orderId);
                 itemStmt.setInt(2, inventoryId);

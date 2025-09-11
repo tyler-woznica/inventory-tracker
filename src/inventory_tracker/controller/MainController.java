@@ -101,8 +101,8 @@ public class MainController {
                                 System.out.println("ORDERS");
                                 System.out.println("""
                                     1. Search
-                                    2. Update
-                                    3. Create Order
+                                    2. Create Order
+                                    3. Update Order
                                     4. Delete Order
                                     5. Main Menu
                                     """);
@@ -115,10 +115,10 @@ public class MainController {
                                         OrderService.search();
                                         break;
                                     case 2:
-                                        OrderService.update();
+                                        OrderService.create();
 
                                     case 3:
-                                        OrderService.create();
+                                        OrderService.update();
                                         break;
 
                                     case 4:
