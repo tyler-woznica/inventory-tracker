@@ -40,8 +40,76 @@ public class OrderService {
     }
 
     public static void create() {
-        System.out.println("*** FEATURE IN DEVELOPMENT ***");
-        // need to add functionality to auto calculate total and pull inventory
+        System.out.println("*** CREATE ORDER ***");
+        userScanner.nextLine();
+
+        System.out.println("Enter customer ID:");
+        int customerId = Integer.parseInt(userScanner.nextLine());
+
+        int orderId = -1;
+
+        String insertOrderQuery = "INSERT INTO orders (customer_id) VALUES (?)";
+
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement orderStmt = conn.prepareStatement(insertOrderQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Insert order
+            orderStmt.setInt(1, customerId);
+            orderStmt.executeUpdate();
+
+            // Get generated order ID
+            try (ResultSet rs = orderStmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    orderId = rs.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error creating order.");
+            e.printStackTrace();
+            return;
+        }
+
+        if (orderId == -1) {
+            System.out.println("Failed to retrieve order ID.");
+            return;
+        }
+
+        // Loop to add order items
+        boolean addingItems = true;
+        while (addingItems) {
+            System.out.println("Enter inventory item ID to add:");
+            int inventoryId = Integer.parseInt(userScanner.nextLine());
+
+            System.out.println("Enter quantity:");
+            int quantity = Integer.parseInt(userScanner.nextLine());
+
+            String insertItemQuery = "INSERT INTO order_items (order_id, inventory_id, quantity) VALUES (?, ?, ?)";
+
+            try (Connection conn = MySQLConnector.getConnection();
+                 PreparedStatement itemStmt = conn.prepareStatement(insertItemQuery)) {
+
+                itemStmt.setInt(1, orderId);
+                itemStmt.setInt(2, inventoryId);
+                itemStmt.setInt(3, quantity);
+
+                itemStmt.executeUpdate();
+
+                System.out.println("Item added to order.");
+
+            } catch (SQLException e) {
+                System.out.println("Error adding item to order.");
+                e.printStackTrace();
+            }
+
+            System.out.println("Add another item? (y/n):");
+            String choice = userScanner.nextLine();
+            if (!choice.equalsIgnoreCase("y")) {
+                addingItems = false;
+            }
+        }
+
+        System.out.println("*** ORDER CREATED SUCCESSFULLY ***\n");
     }
 
 
@@ -109,4 +177,37 @@ public class OrderService {
             System.out.println("*** Connection to Database Failed ***");
         }
     }
+
+    public static void checkOrderAlerts() {
+        String query = "SELECT o.id, o.customer_id, o.total, o.alert, c.business_name " +
+                "FROM orders o " +
+                "JOIN customers c ON o.customer_id = c.id " +
+                "WHERE o.alert = 1";
+
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("*** ORDER ALERTS (INSUFFICIENT STOCK) ***");
+            boolean hasAlerts = false;
+            while (rs.next()) {
+                hasAlerts = true;
+                int id = rs.getInt("id");
+                int customerId = rs.getInt("customer_id");
+                double total = rs.getDouble("total");
+                String businessName = rs.getString("business_name");
+
+                System.out.println("Order ID: " + id + " | Customer: " + businessName +
+                        " (ID: " + customerId + ") | Total: $" + total);
+            }
+            if (!hasAlerts) {
+                System.out.println("No order alerts.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error checking order alerts.");
+            e.printStackTrace();
+        }
+    }
+
 }

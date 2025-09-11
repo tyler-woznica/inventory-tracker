@@ -230,4 +230,31 @@ public class InventoryService {
         }
         System.out.println();
     }
+
+    public static void checkInventoryAlerts() {
+        String query = "SELECT id, name, quantity, alert FROM inventory WHERE alert = 1";
+
+        try (Connection conn = MySQLConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            System.out.println("*** LOW INVENTORY ALERTS ***");
+            boolean hasAlerts = false;
+            while (rs.next()) {
+                hasAlerts = true;
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                int quantity = rs.getInt("quantity");
+
+                System.out.println("ID: " + id + " | Name: " + name + " | Quantity: " + quantity);
+            }
+            if (!hasAlerts) {
+                System.out.println("No inventory alerts.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error checking inventory alerts.");
+            e.printStackTrace();
+        }
+    }
 }
