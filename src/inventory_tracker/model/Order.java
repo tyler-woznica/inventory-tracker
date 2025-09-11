@@ -1,14 +1,16 @@
 package inventory_tracker.model;
 
+import java.time.LocalDateTime;
+
 public class Order {
 
     // data retrieved from database
     private int id;
     private int customerID;
     // orderDate may type may need to be changed based on SQL
-    private int orderDate;
+    private LocalDateTime orderDate;
 
-    public Order(int id, int customerID, int orderDate) {
+    public Order(int id, int customerID, LocalDateTime orderDate) {
         this.id = id;
         this.customerID = customerID;
         this.orderDate = orderDate;
@@ -30,11 +32,11 @@ public class Order {
         this.customerID = customerID;
     }
 
-    public int getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(int orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
