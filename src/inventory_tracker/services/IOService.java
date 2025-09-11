@@ -29,7 +29,7 @@ public class IOService {
              Stream<String> lines = Files.lines(Paths.get(filePath))) {
                  conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSTERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)");
+                    "INSERT INTO inventory (name, quantity, price) VALUES (?, ?, ?)");
             lines.skip(1).forEach(line -> executor.submit(() -> {
                 try {
                     String[] values = line.split(",");
@@ -92,7 +92,7 @@ public class IOService {
              Stream<String> lines = Files.lines(Paths.get(filePath))) {
             conn.setAutoCommit(false);
             PreparedStatement stmt = conn.prepareStatement(
-                    "INSTERT INTO customers (business_name,email,phone,city,state) " +
+                    "INSERT INTO customers (business_name,email,phone,city,state) " +
                             "VALUES (?, ?, ?, ?, ?)");
             lines.skip(1).forEach(line -> executor.submit(() -> {
                 try {
