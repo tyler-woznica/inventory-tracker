@@ -77,6 +77,7 @@ public class InventoryService {
                 case 1:
                     System.out.print("Enter new name: ");
                     newVal = userScanner.nextLine();
+                    userScanner.nextLine();
                     sql = "UPDATE inventory SET name = ? WHERE id = ?";
                     break;
                 case 2:
