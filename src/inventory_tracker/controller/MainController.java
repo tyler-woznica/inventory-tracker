@@ -60,27 +60,21 @@ public class MainController {
                                     case 1:
                                         InventoryService.search();
                                         break;
-
                                     case 2:
                                         InventoryService.report();
                                         break;
-
                                     case 3:
                                         InventoryService.update();
                                         break;
-
                                     case 4:
                                         InventoryService.create();
                                         break;
-
                                     case 5:
                                         InventoryService.delete();
                                         break;
-
                                     case 6:
                                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
-
                                     default:
                                         System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
@@ -116,19 +110,16 @@ public class MainController {
                                         break;
                                     case 2:
                                         OrderService.create();
-
+                                        break;
                                     case 3:
                                         OrderService.update();
                                         break;
-
                                     case 4:
                                         OrderService.delete();
                                         break;
-
                                     case 5:
                                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
-
                                     default:
                                         System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
@@ -162,22 +153,17 @@ public class MainController {
                                     case 1:
                                         CustomerService.search();
                                         break;
-
                                     case 2:
                                         CustomerService.update();
-
                                     case 3:
                                         CustomerService.create();
                                         break;
-
                                     case 4:
                                         CustomerService.delete();
                                         break;
-
                                     case 5:
                                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
-
                                     default:
                                         System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
@@ -211,22 +197,17 @@ public class MainController {
                                     case 1:
                                         SalesAnalysis.topThreeItems();
                                         break;
-
                                     case 2:
                                         SalesAnalysis.topThreeCustomers();
                                         break;
-
                                     case 3:
                                         SalesAnalysis.bottomThreeItems();
                                         break;
-
                                     case 4:
                                         SalesAnalysis.bottomThreeCustomers();
-
                                     case 5:
                                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
-
                                     default:
                                         System.out.println("\n*** INVALID INPUT: Please select an option. ***\n");
                                 }
@@ -262,18 +243,14 @@ public class MainController {
                                     case 1:
                                         IOService.inventoryImport();
                                         break;
-
                                     case 2:
                                         IOService.inventoryExport();
                                         break;
-
                                     case 3:
                                         IOService.customerImport();
                                         break;
-
                                     case 4:
                                         IOService.customerExport();
-
                                     case 5:
                                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                                         break;
