@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class ValidationService {
 
     /**
-     * Validates email format using a basic regex pattern
+     * Validates email format using a regex pattern
      * @param email Email address to validate
      * @return true if email format is valid, false otherwise
      */
@@ -24,7 +24,7 @@ public class ValidationService {
     }
 
     /**
-     * Validates that a price is positive and within reasonable bounds
+     * Validates that a price is positive and within normal bounds
      * @param price Price value to validate
      * @return true if price is valid, false otherwise
      */
