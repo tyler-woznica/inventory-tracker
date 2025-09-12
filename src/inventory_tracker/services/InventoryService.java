@@ -62,7 +62,7 @@ public class InventoryService {
     }
 
     /**
-     * Updates an existing inventory item's information with complete field selection
+     * Updates an existing inventory item's information with field selection
      * @param scanner Scanner instance for user input
      */
     public static void update(Scanner scanner) {
@@ -114,7 +114,7 @@ public class InventoryService {
                 break;
 
             case 2:
-                // Update quantity with validation
+                // Update quantity
                 int quantity = ExceptionService.getValidatedIntInput(scanner,
                         "Enter new quantity:", 0, Integer.MAX_VALUE);
                 sql = "UPDATE inventory SET quantity = ? WHERE id = ?";
@@ -123,7 +123,7 @@ public class InventoryService {
                 break;
 
             case 3:
-                // Update price with validation
+                // Update price
                 double price = ExceptionService.getValidatedDoubleInput(scanner,
                         "Enter new price:", 0.01, 999999.99);
                 sql = "UPDATE inventory SET price = ? WHERE id = ?";
@@ -152,7 +152,7 @@ public class InventoryService {
         int quantity;
         double price;
 
-        // Get and validate item name
+        // Get item name
         do {
             System.out.print("Enter new item name: ");
             name = scanner.nextLine().trim();
@@ -161,11 +161,11 @@ public class InventoryService {
             }
         } while (!ValidationService.isValidString(name));
 
-        // Get and validate quantity
+        // Get quantity
         quantity = ExceptionService.getValidatedIntInput(scanner,
                 "Enter new item quantity:", 0, Integer.MAX_VALUE);
 
-        // Get and validate price
+        // Get price
         price = ExceptionService.getValidatedDoubleInput(scanner,
                 "Enter new item price per unit:", 0.01, 999999.99);
 
