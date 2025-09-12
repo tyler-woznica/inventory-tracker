@@ -1,19 +1,18 @@
 package inventory_tracker.controller;
 
-import inventory_tracker.data.SalesAnalysis;
 import inventory_tracker.services.*;
-
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import inventory_tracker.data.SalesAnalysis;
 
 /**
- * Main controller class that handles the primary menu system for the Inventory Tracker application.
- * Provides a console-based interface for accessing inventory, order, customer, analysis, and I/O operations.
+ * Main controller class that handles the primary menu system for the program.
+ * Provides a CLI for accessing inventory, orders, customers, analysis, and I/O operations.
  */
 public class MainController {
 
-    // Single scanner instance to prevent resource conflicts
+    // Single scanner instance to prevent conflicts
     private static final Scanner USER_SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -21,10 +20,10 @@ public class MainController {
 
         System.out.println("\n*** INVENTORY TRACKER v1.0 ***\n");
 
-        // Display startup inventory alerts
+        // Display startup inventory and order alerts
         displayStartupAlerts();
 
-        // Main menu loop - continues until user selects quit (option 6)
+        // Main menu loop continues until user selects quit (option 6)
         while (mainMenuSelection != 6) {
             try {
                 displayMainMenu();
@@ -64,8 +63,8 @@ public class MainController {
      * Displays startup alerts for low inventory and order issues
      */
     private static void displayStartupAlerts() {
-        InventoryService.checkInventoryAlerts(USER_SCANNER);
-        OrderService.checkOrderAlerts(USER_SCANNER);
+        InventoryService.checkInventoryAlerts();
+        OrderService.checkOrderAlerts();
         System.out.println();
     }
 

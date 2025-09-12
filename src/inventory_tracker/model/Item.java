@@ -1,6 +1,6 @@
 package inventory_tracker.model;
 
-class Item {
+public class Item {
 
     // Database fields
     private int id;
