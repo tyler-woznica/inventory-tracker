@@ -11,7 +11,7 @@ public class Customer {
     private String state;
 
     /**
-     * Constructor with ID (used when retrieving from database)
+     * Constructor with ID for when retrieving from database
      * @param id Customer ID from database
      * @param businessName Business name of the customer
      * @param email Email address of the customer
@@ -29,7 +29,7 @@ public class Customer {
     }
 
     /**
-     * Constructor without ID (used when creating new customers)
+     * Constructor without ID for when creating new customers
      * @param businessName Business name of the customer
      * @param email Email address of the customer
      * @param phone Phone number as Long to handle large numbers
@@ -44,7 +44,6 @@ public class Customer {
         this.state = state;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

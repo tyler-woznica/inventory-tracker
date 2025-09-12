@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Sales analysis utility class providing business intelligence queries.
+ * Sales analysis utility class for business queries.
  * Generates reports on top/bottom performing items and customers.
- * Uses custom sorting algorithm and provides formatted output.
+ * Uses custom sorting algorithm and formats output.
  */
 public class SalesAnalysis {
 
     /**
-     * Internal class to hold result data for analysis queries
+     * Internal class to hold result data for queries
      */
     static class ResultRow {
         String label;
@@ -181,7 +181,7 @@ public class SalesAnalysis {
     }
 
     /**
-     * Custom insertion sort implementation for sorting ResultRow objects
+     * Custom insertion sort for sorting ResultRow objects
      *
      * @param list      List of ResultRow objects to sort
      * @param ascending true for ascending order, false for descending

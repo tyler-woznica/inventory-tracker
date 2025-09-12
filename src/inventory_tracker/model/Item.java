@@ -10,9 +10,9 @@ public class Item {
     private int alert; // Alert flag (0 or 1) for low stock
 
     /**
-     * Constructor without ID and alert (used for creating new items)
+     * Constructor without ID and alert for creating new items
      * @param name Name of the inventory item
-     * @param quantity Current quantity in stock
+     * @param quantity Current quantity to input
      * @param price Price per unit
      */
     public Item(String name, int quantity, double price) {
@@ -23,7 +23,7 @@ public class Item {
     }
 
     /**
-     * Constructor with ID (used when retrieving from database)
+     * Constructor with ID for retrieving from database
      * @param id Item ID from database
      * @param name Name of the inventory item
      * @param quantity Current quantity in stock
@@ -53,7 +53,6 @@ public class Item {
         this.alert = alert;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

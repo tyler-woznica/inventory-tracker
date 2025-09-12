@@ -6,17 +6,16 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * Database connection class for MySQL database connectivity.
+ * Database connection utility class for MySQL database connectivity.
  */
 public class MySQLConnector {
 
     private static String URL = "jdbc:mysql://127.0.0.1:3306/inventory_tracker?useSSL=false&allowPublicKeyRetrieval=true";
     private static String USER = "root";
     private static String PASSWORD;
-
-    // Connection pool settings
     private static final String ADDITIONAL_PARAMS = "&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8";
 
+    // Ensure driver is loaded and password is configured
     static {
         try {
             // MySQL JDBC driver
