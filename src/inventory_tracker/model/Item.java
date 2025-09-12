@@ -68,14 +68,6 @@ public class Item {
     public int getAlert() { return alert; }
     public void setAlert(int alert) { this.alert = alert; }
 
-    /**
-     * Checks if this item is currently on low stock alert
-     * @return true if alert flag is set, false otherwise
-     */
-    public boolean isLowStock() {
-        return alert == 1;
-    }
-
     @Override
     public String toString() {
         return "Item{" +

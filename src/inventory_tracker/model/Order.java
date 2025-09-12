@@ -9,7 +9,7 @@ class Order {
     private int customerId;
     private Timestamp orderDate; // FIXED: Changed from int to Timestamp
     private double total;
-    private int alert; // Alert flag for order issues (e.g., insufficient stock)
+    private int alert; // Alert flag for order issues (insufficient stock)
 
     /**
      * Constructor with ID for retrieving from database
