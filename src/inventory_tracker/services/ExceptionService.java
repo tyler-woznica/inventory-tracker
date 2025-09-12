@@ -54,7 +54,7 @@ public class ExceptionService {
      * Gets user confirmation for an action
      * @param scanner Scanner for user input
      * @param promptMessage Message to display to user
-     * @return true if user confirms (enters 1), false otherwise
+     * @return true if user confirms by entering 1), false otherwise
      */
     public static boolean getUserConfirmation(Scanner scanner, String promptMessage) {
         System.out.println(promptMessage);
@@ -73,8 +73,8 @@ public class ExceptionService {
      * Safely gets integer input from user with validation
      * @param scanner Scanner for user input
      * @param prompt Message to display to user
-     * @param min Minimum allowed value (inclusive)
-     * @param max Maximum allowed value (inclusive)
+     * @param min Minimum allowed value
+     * @param max Maximum allowed value
      * @return Valid integer within specified range
      */
     public static int getValidatedIntInput(Scanner scanner, String prompt, int min, int max) {

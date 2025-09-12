@@ -83,7 +83,7 @@ public class MainController {
     }
 
     /**
-     * Handles the inventory submenu operations
+     * Handles the inventory submenu
      */
     private static void handleInventoryMenu() {
         int inventoryMenuSelection = 0;
@@ -107,7 +107,7 @@ public class MainController {
                         InventoryService.search(USER_SCANNER);
                         break;
                     case 2:
-                        InventoryService.report(USER_SCANNER);
+                        InventoryService.report();
                         break;
                     case 3:
                         InventoryService.update(USER_SCANNER);

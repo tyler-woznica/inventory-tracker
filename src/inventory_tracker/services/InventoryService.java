@@ -26,10 +26,9 @@ public class InventoryService {
     }
 
     /**
-     * Displays a complete report of all inventory items
-     * @param scanner Scanner instance (for consistency, though not used in this method)
+     * Displays a report of all inventory items
      */
-    public static void report(Scanner scanner) {
+    public static void report() {
         System.out.println("*** INVENTORY REPORT ***");
         System.out.println("ID | NAME | QUANTITY | PRICE/UNIT | ALERT\n");
 
@@ -252,7 +251,7 @@ public class InventoryService {
     }
 
     /**
-     * Helper method to look up and display an inventory item by ID
+     * Helper method to look up an inventory item
      * @param id Item ID to look up
      * @return true if item was found, false otherwise
      */
