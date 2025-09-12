@@ -6,13 +6,10 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
- * Database connection utility class for MySQL database connectivity.
- * Handles connection pooling, configuration, and provides centralized database access.
- * Enhanced with configuration file support and better error handling.
+ * Database connection class for MySQL database connectivity.
  */
 public class MySQLConnector {
 
-    // Default connection parameters (can be overridden by properties file)
     private static String URL = "jdbc:mysql://127.0.0.1:3306/inventory_tracker?useSSL=false&allowPublicKeyRetrieval=true";
     private static String USER = "root";
     private static String PASSWORD;
@@ -22,13 +19,9 @@ public class MySQLConnector {
 
     static {
         try {
-            // Load database configuration from properties file if available
-            loadDatabaseConfig();
-
-            // Load MySQL JDBC driver
+            // MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Get password from environment variable
             PASSWORD = System.getenv("DB_PASS");
 
             if (PASSWORD == null || PASSWORD.isEmpty()) {
@@ -58,7 +51,7 @@ public class MySQLConnector {
             Connection conn = DriverManager.getConnection(fullUrl, USER, PASSWORD);
 
             // Set connection properties for better performance
-            conn.setAutoCommit(true); // Default to auto-commit
+            conn.setAutoCommit(true);
 
             return conn;
 
@@ -85,31 +78,7 @@ public class MySQLConnector {
     }
 
     /**
-     * Loads database configuration from properties file if available
-     */
-    private static void loadDatabaseConfig() {
-        try (InputStream input = MySQLConnector.class.getClassLoader()
-                .getResourceAsStream("database.properties")) {
-
-            if (input != null) {
-                Properties props = new Properties();
-                props.load(input);
-
-                // Override default values with properties file values
-                URL = props.getProperty("db.url", URL);
-                USER = props.getProperty("db.user", USER);
-
-                System.out.println("Database configuration loaded from properties file.");
-            }
-
-        } catch (IOException e) {
-            // Properties file not found or couldn't be read - use defaults
-            System.out.println("Using default database configuration (database.properties not found).");
-        }
-    }
-
-    /**
-     * Gets current database URL (for debugging/logging)
+     * Gets current database URL
      * @return Database URL string
      */
     public static String getDatabaseUrl() {
@@ -117,7 +86,7 @@ public class MySQLConnector {
     }
 
     /**
-     * Gets current database user (for debugging/logging)
+     * Gets current database user
      * @return Database username
      */
     public static String getDatabaseUser() {
