@@ -578,16 +578,16 @@ public class OrderService {
     }
 
     /**
-     * Deletes an entire order and all its items
+     * Deletes an entire order and all of its items
      * @param orderId ID of the order to delete
      */
     private static void executeOrderDelete(int orderId) {
         try (Connection conn = MySQLConnector.getConnection()) {
-            // Start transaction
+
             conn.setAutoCommit(false);
 
             try {
-                // Delete order items first (due to foreign key constraint)
+                // Delete order items first due to foreign key constraint
                 String deleteItemsQuery = "DELETE FROM order_items WHERE order_id = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(deleteItemsQuery)) {
                     stmt.setInt(1, orderId);
@@ -609,7 +609,6 @@ public class OrderService {
                     }
                 }
 
-                // Commit transaction
                 conn.commit();
 
             } catch (SQLException e) {
