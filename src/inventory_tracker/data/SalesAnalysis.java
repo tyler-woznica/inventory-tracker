@@ -182,7 +182,6 @@ public class SalesAnalysis {
 
     /**
      * Custom insertion sort for sorting ResultRow objects
-     *
      * @param list      List of ResultRow objects to sort
      * @param ascending true for ascending order, false for descending
      */
