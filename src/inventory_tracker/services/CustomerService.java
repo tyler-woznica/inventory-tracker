@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  * Service class for handling all customer-related database operations.
- * Provides CRUD (Create, Read, Update, Delete) functionality for customer management.
+ * Provides CRUD functionality for customer management.
  */
 public class CustomerService {
 
@@ -26,7 +26,7 @@ public class CustomerService {
     }
 
     /**
-     * Updates an existing customer's information with complete field selection
+     * Updates an existing customer's information with field selection
      * @param scanner Scanner instance for user input
      */
     public static void update(Scanner scanner) {
@@ -80,7 +80,7 @@ public class CustomerService {
                 break;
 
             case 2:
-                // Update email with validation
+                // Update email
                 System.out.print("Enter new email address: ");
                 String email = scanner.nextLine().trim();
                 if (ValidationService.isValidEmail(email)) {
@@ -93,7 +93,7 @@ public class CustomerService {
                 break;
 
             case 3:
-                // Update phone with validation
+                // Update phone
                 System.out.print("Enter new phone number (10 digits, no spaces): ");
                 try {
                     Long phone = Long.parseLong(scanner.nextLine().trim());
@@ -123,7 +123,7 @@ public class CustomerService {
                 break;
 
             case 5:
-                // Update state with validation
+                // Update state
                 System.out.print("Enter new state (2 letter abbreviation, e.g., CA): ");
                 String state = scanner.nextLine().trim().toUpperCase();
                 if (ValidationService.isValidState(state)) {
@@ -155,7 +155,7 @@ public class CustomerService {
         String businessName, email, city, state;
         Long phone;
 
-        // Get and validate business name
+        // Get business name
         do {
             System.out.print("Enter new customer name: ");
             businessName = scanner.nextLine().trim();
@@ -164,7 +164,7 @@ public class CustomerService {
             }
         } while (!ValidationService.isValidString(businessName));
 
-        // Get and validate email
+        // Get email
         do {
             System.out.print("Enter new customer email: ");
             email = scanner.nextLine().trim();
@@ -173,7 +173,7 @@ public class CustomerService {
             }
         } while (!ValidationService.isValidEmail(email));
 
-        // Get and validate phone
+        // Get phone
         do {
             System.out.print("Enter new customer phone number (10 digits, no spaces): ");
             try {
@@ -188,7 +188,7 @@ public class CustomerService {
             }
         } while (phone == null);
 
-        // Get and validate city
+        // Get city
         do {
             System.out.print("Enter new customer city: ");
             city = scanner.nextLine().trim();
@@ -197,7 +197,7 @@ public class CustomerService {
             }
         } while (!ValidationService.isValidString(city));
 
-        // Get and validate state
+        // Get state
         do {
             System.out.print("Enter new customer state (2 letter abbreviation, e.g., CA): ");
             state = scanner.nextLine().trim().toUpperCase();
