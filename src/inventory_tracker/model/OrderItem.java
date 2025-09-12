@@ -9,7 +9,7 @@ public class OrderItem {
     private int quantity;
 
     /**
-     * Constructor without ID (used for creating new order items)
+     * Constructor without ID for creating new order items
      * @param orderId ID of the order this item belongs to
      * @param inventoryId ID of the inventory item being ordered
      * @param quantity Quantity of the item being ordered
@@ -21,7 +21,7 @@ public class OrderItem {
     }
 
     /**
-     * Constructor with ID (used when retrieving from database)
+     * Constructor with ID for retrieving from database
      * @param id OrderItem ID from database
      * @param orderId ID of the order this item belongs to
      * @param inventoryId ID of the inventory item being ordered
@@ -34,7 +34,6 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

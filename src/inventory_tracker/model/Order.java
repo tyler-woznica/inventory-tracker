@@ -12,7 +12,7 @@ class Order {
     private int alert; // Alert flag for order issues (e.g., insufficient stock)
 
     /**
-     * Constructor with ID (used when retrieving from database)
+     * Constructor with ID for retrieving from database
      * @param id Order ID from database
      * @param customerId ID of the customer who placed the order
      * @param orderDate Timestamp when the order was placed
@@ -42,7 +42,7 @@ class Order {
     }
 
     /**
-     * Constructor without ID (used for creating new orders)
+     * Constructor without ID for creating new orders
      * @param customerId ID of the customer placing the order
      */
     public Order(int customerId) {
@@ -52,7 +52,6 @@ class Order {
         this.alert = 0; // Default: no alert
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -67,14 +66,6 @@ class Order {
 
     public int getAlert() { return alert; }
     public void setAlert(int alert) { this.alert = alert; }
-
-    /**
-     * Checks if this order has any alerts (e.g., insufficient stock)
-     * @return true if alert flag is set, false otherwise
-     */
-    public boolean hasAlert() {
-        return alert == 1;
-    }
 
     @Override
     public String toString() {
