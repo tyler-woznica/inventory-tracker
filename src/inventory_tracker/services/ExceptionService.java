@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Service class for handling various types of exceptions and input errors.
- * Centralizes error handling logic for consistent user experience.
+ * Contains all error handling logic.
  */
 public class ExceptionService {
 
@@ -54,7 +54,7 @@ public class ExceptionService {
      * Gets user confirmation for an action
      * @param scanner Scanner for user input
      * @param promptMessage Message to display to user
-     * @return true if user confirms by entering 1), false otherwise
+     * @return true if user confirms by entering 1, false otherwise
      */
     public static boolean getUserConfirmation(Scanner scanner, String promptMessage) {
         System.out.println(promptMessage);
@@ -70,7 +70,7 @@ public class ExceptionService {
     }
 
     /**
-     * Safely gets integer input from user with validation
+     * Gets integer input from user with validation
      * @param scanner Scanner for user input
      * @param prompt Message to display to user
      * @param min Minimum allowed value
@@ -101,7 +101,7 @@ public class ExceptionService {
     }
 
     /**
-     * Safely gets double input from user with validation
+     * Gets double input from user with validation
      * @param scanner Scanner for user input
      * @param prompt Message to display to user
      * @param min Minimum allowed value (inclusive)
