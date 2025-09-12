@@ -131,7 +131,7 @@ public class MainController {
     }
 
     /**
-     * Handles the order submenu operations
+     * Handles the order submenu
      */
     private static void handleOrderMenu() {
         int orderMenuSelection = 0;
@@ -155,7 +155,7 @@ public class MainController {
                         break;
                     case 2:
                         OrderService.create(USER_SCANNER);
-                        break; // FIXED: Added missing break
+                        break;
                     case 3:
                         OrderService.update(USER_SCANNER);
                         break;
@@ -175,7 +175,7 @@ public class MainController {
     }
 
     /**
-     * Handles the customer submenu operations
+     * Handles the customer submenu
      */
     private static void handleCustomerMenu() {
         int customerMenuSelection = 0;
@@ -199,7 +199,7 @@ public class MainController {
                         break;
                     case 2:
                         CustomerService.update(USER_SCANNER);
-                        break; // FIXED: Added missing break
+                        break;
                     case 3:
                         CustomerService.create(USER_SCANNER);
                         break;
@@ -219,7 +219,7 @@ public class MainController {
     }
 
     /**
-     * Handles the analysis submenu operations
+     * Handles the analysis submenu
      */
     private static void handleAnalysisMenu() {
         int analysisMenuSelection = 0;
@@ -249,7 +249,7 @@ public class MainController {
                         break;
                     case 4:
                         SalesAnalysis.bottomThreeCustomers();
-                        break; // FIXED: Added missing break
+                        break;
                     case 5:
                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                         break;
@@ -295,7 +295,7 @@ public class MainController {
                         break;
                     case 4:
                         IOService.customerExport(USER_SCANNER);
-                        break; // FIXED: Added missing break
+                        break;
                     case 5:
                         System.out.println("\n*** RETURNING TO MAIN MENU ***\n");
                         break;
