@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 /**
  * Service class for handling import/export operations for inventory and customer data.
  * Supports CSV file format with proper validation and error handling.
- * FIXED: Corrected SQL typos and improved batch processing with proper transaction management.
  */
 public class IOService {
 
@@ -134,11 +133,10 @@ public class IOService {
     }
 
     /**
-     * FIXED: Imports inventory data from CSV with proper SQL and batch processing
+     * Imports inventory data from CSV with proper SQL and batch processing
      * @param filePath Path to the CSV file to import
      */
     private static void importInventoryFromCSV(String filePath) {
-        // FIXED: Corrected SQL statement from "INSTERT" to "INSERT"
         String sql = "INSERT INTO inventory (name, quantity, price, alert) VALUES (?, ?, ?, ?)";
 
         AtomicInteger successCount = new AtomicInteger(0);
@@ -192,7 +190,6 @@ public class IOService {
                         }
                     });
 
-            // FIXED: Execute the batch and commit the transaction
             if (successCount.get() > 0) {
                 int[] results = stmt.executeBatch();
                 conn.commit();
@@ -252,7 +249,6 @@ public class IOService {
      * @param filePath Path to the CSV file to import
      */
     private static void importCustomersFromCSV(String filePath) {
-        // FIXED: Corrected SQL statement from "INSTERT" to "INSERT"
         String sql = "INSERT INTO customers (business_name, email, phone, city, state) VALUES (?, ?, ?, ?, ?)";
 
         AtomicInteger successCount = new AtomicInteger(0);
@@ -314,7 +310,6 @@ public class IOService {
                         }
                     });
 
-            // FIXED: Execute the batch and commit the transaction
             if (successCount.get() > 0) {
                 int[] results = stmt.executeBatch();
                 conn.commit();
